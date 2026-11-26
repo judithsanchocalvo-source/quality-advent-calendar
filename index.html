@@ -13,109 +13,112 @@
 
 body {
     margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background:
-        radial-gradient(circle at top left, rgba(255,255,255,.08), transparent 30%),
-        linear-gradient(145deg, #071b25, #0b2b36 55%, #10313a);
-    color: white;
     min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: white;
+    background:
+        radial-gradient(circle at top, #12404c 0%, #092d37 45%, #061f28 100%);
 }
+
+/* HEADER */
 
 header {
     text-align: center;
-    padding: 60px 20px 30px;
+    padding: 45px 20px 20px;
 }
 
-header .eyebrow {
-    color: #ff7a00;
+.eyebrow {
+    color: #ff7900;
     font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
     font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 h1 {
-    font-size: clamp(36px, 6vw, 68px);
-    margin: 10px 0 12px;
-    line-height: 1;
+    margin: 10px 0;
+    font-size: clamp(38px, 5vw, 64px);
 }
 
 .subtitle {
-    max-width: 680px;
-    margin: auto;
-    color: #d9e2e6;
+    max-width: 720px;
+    margin: 0 auto;
+    color: #d9e5e8;
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
-.small-intro {
+.intro {
     margin-top: 18px;
-    color: #ffbd80;
-    font-weight: 600;
+    color: #ffa654;
+    font-weight: 700;
 }
+
+/* CALENDAR */
 
 .calendar {
-    max-width: 1050px;
-    margin: 30px auto 70px;
-    padding: 20px;
+    width: min(1100px, 94%);
+    margin: 30px auto 60px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 18px;
 }
 
 .door {
-    min-height: 145px;
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,.15);
-    background:
-        linear-gradient(145deg, #ffffff, #e9edef);
-    color: #10252d;
-    cursor: pointer;
     position: relative;
-    overflow: hidden;
-    box-shadow: 0 12px 28px rgba(0,0,0,.23);
-    transition: .25s ease;
+    min-height: 150px;
+    border: 0;
+    border-radius: 18px;
+    cursor: pointer;
+
+    background: linear-gradient(145deg, #ffffff, #e8edef);
+    color: #16323b;
+
+    box-shadow: 0 12px 26px rgba(0,0,0,.28);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
 .door:hover {
-    transform: translateY(-6px) rotate(-1deg);
-    box-shadow: 0 18px 32px rgba(0,0,0,.35);
+    transform: translateY(-7px);
+    box-shadow: 0 20px 35px rgba(0,0,0,.38);
 }
 
 .door.special {
-    background: linear-gradient(145deg, #ff8a16, #ef6500);
+    background: linear-gradient(145deg, #ff8a16, #eb6100);
     color: white;
 }
 
 .door.locked {
-    opacity: .65;
+    opacity: .55;
 }
 
 .door-number {
-    font-size: 42px;
+    font-size: 44px;
     font-weight: 800;
 }
 
-.door-label {
+.door-text {
     display: block;
-    font-size: 12px;
-    letter-spacing: 1.5px;
+    margin-top: 8px;
+    font-size: 11px;
     text-transform: uppercase;
-    margin-top: 7px;
-    opacity: .65;
+    letter-spacing: 1.4px;
+    opacity: .7;
 }
 
 .lock {
     position: absolute;
     top: 12px;
     right: 14px;
-    font-size: 17px;
 }
 
 .decoration {
     position: absolute;
-    bottom: -8px;
-    right: 8px;
+    right: 10px;
+    bottom: 2px;
     font-size: 38px;
     opacity: .15;
 }
@@ -123,15 +126,18 @@ h1 {
 /* MODAL */
 
 .modal {
-    display: none;
     position: fixed;
     inset: 0;
-    background: rgba(3,14,20,.84);
-    backdrop-filter: blur(9px);
     z-index: 100;
+
+    display: none;
     align-items: center;
     justify-content: center;
+
     padding: 20px;
+
+    background: rgba(2,13,18,.86);
+    backdrop-filter: blur(8px);
 }
 
 .modal.show {
@@ -139,138 +145,165 @@ h1 {
 }
 
 .card {
-    background: white;
-    color: #132a33;
-    width: min(620px, 100%);
+    position: relative;
+
+    width: min(630px, 100%);
     max-height: 90vh;
     overflow-y: auto;
-    border-radius: 28px;
+
     padding: 45px;
+
     text-align: center;
-    position: relative;
-    box-shadow: 0 30px 80px rgba(0,0,0,.45);
-    animation: appear .35s ease;
+
+    background: white;
+    color: #17303a;
+
+    border-radius: 28px;
+
+    box-shadow: 0 35px 90px rgba(0,0,0,.5);
+
+    animation: openCard .35s ease;
 }
 
-@keyframes appear {
+@keyframes openCard {
+
     from {
-        transform: scale(.88) translateY(20px);
         opacity: 0;
+        transform: scale(.85) translateY(30px);
     }
+
     to {
-        transform: scale(1) translateY(0);
         opacity: 1;
+        transform: scale(1) translateY(0);
     }
 }
 
 .close {
     position: absolute;
-    top: 18px;
-    right: 22px;
-    border: none;
+    top: 15px;
+    right: 20px;
+
+    border: 0;
     background: transparent;
-    font-size: 28px;
+
+    color: #718087;
+
+    font-size: 30px;
     cursor: pointer;
-    color: #687a80;
 }
 
 .date {
     color: #ef6500;
-    text-transform: uppercase;
+    font-weight: 700;
     letter-spacing: 2px;
     font-size: 13px;
-    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .reveal {
-    color: #718087;
-    font-size: 15px;
     margin-top: 20px;
+    color: #738289;
 }
 
-.person-name {
-    font-size: 40px;
-    line-height: 1.1;
-    margin: 8px 0 25px;
-    color: #102f3a;
+.person {
+    margin: 8px 0 24px;
+
+    font-size: 38px;
+    line-height: 1.15;
+
+    color: #123440;
 }
 
 .message {
+    max-width: 510px;
+    margin: 15px auto;
+
+    color: #465b63;
+
     font-size: 18px;
-    line-height: 1.7;
-    color: #44565d;
-    max-width: 500px;
-    margin: auto;
+    line-height: 1.65;
 }
 
 .draft {
     margin: 25px 0;
     padding: 22px;
-    background: #fff7ef;
-    border-left: 4px solid #ff7200;
-    border-radius: 10px;
+
     text-align: left;
+
+    background: #fff6ed;
+    border-left: 5px solid #ff7200;
+    border-radius: 10px;
+
+    line-height: 1.55;
 }
 
-.draft strong {
+.draft-title {
     color: #ef6500;
+    font-weight: 800;
 }
 
 .next {
     margin-top: 30px;
     padding-top: 25px;
-    border-top: 1px solid #dde3e5;
+
+    border-top: 1px solid #dde4e6;
+
+    color: #53676e;
+    line-height: 1.5;
 }
 
 .next strong {
     display: block;
+
+    margin-bottom: 8px;
+
     color: #ef6500;
-    font-size: 20px;
-    margin-bottom: 7px;
+
+    font-size: 21px;
 }
 
-.lock-message {
-    font-size: 50px;
-    margin: 5px;
-}
-
-footer {
-    text-align: center;
-    color: #aabac0;
-    padding: 0 20px 40px;
-    font-size: 13px;
-}
-
-/* Preview button - remove before launch */
+/* PREVIEW */
 
 .preview-box {
     position: fixed;
-    bottom: 15px;
     right: 15px;
+    bottom: 15px;
     z-index: 50;
 }
 
 .preview-button {
+    padding: 11px 17px;
+
     border: 0;
-    padding: 10px 16px;
-    border-radius: 20px;
+    border-radius: 25px;
+
     background: #ff7200;
     color: white;
-    font-weight: 700;
+
+    font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 6px 18px rgba(0,0,0,.25);
+
+    box-shadow: 0 8px 22px rgba(0,0,0,.3);
 }
 
+footer {
+    padding: 5px 20px 40px;
+
+    text-align: center;
+
+    color: #99afb6;
+}
+
+/* RESPONSIVE */
+
 @media (max-width: 850px) {
+
     .calendar {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-@media (max-width: 560px) {
-    header {
-        padding-top: 40px;
-    }
+@media (max-width: 550px) {
 
     .calendar {
         grid-template-columns: repeat(3, 1fr);
@@ -286,11 +319,11 @@ footer {
     }
 
     .card {
-        padding: 42px 23px 28px;
+        padding: 42px 22px 28px;
     }
 
-    .person-name {
-        font-size: 31px;
+    .person {
+        font-size: 30px;
     }
 }
 </style>
@@ -299,63 +332,614 @@ footer {
 <body>
 
 <header>
-    <div class="eyebrow">December 2026</div>
 
-    <h1>🎄 Quality Advent Calendar</h1>
+<div class="eyebrow">
+DECEMBER 2026
+</div>
 
-    <p class="subtitle">
-        Behind every door, there's someone who makes a difference.
-        Open one door each day and discover who we're celebrating.
-    </p>
+<h1>
+🎄 Quality Advent Calendar
+</h1>
 
-    <p class="small-intro">
-        18 people. 18 personal messages. 6 messages for all of us. ✨
-    </p>
+<p class="subtitle">
+Behind every door, there's someone who makes a difference.
+Open one door each day and discover who we're celebrating.
+</p>
+
+<p class="intro">
+18 people. 18 personal messages. 6 messages for all of us. ✨
+</p>
+
 </header>
+
 
 <main class="calendar" id="calendar"></main>
 
+
 <footer>
-    One day. One door. One little surprise. 🧡
+One day. One door. One little surprise. 🧡
 </footer>
 
+
+<!-- PREVIEW BUTTON -->
+
 <div class="preview-box">
-    <button class="preview-button" onclick="togglePreview()">
-        🛠 Preview Mode: ON
-    </button>
+
+<button
+class="preview-button"
+id="previewButton"
+onclick="togglePreview()">
+
+🛠 Preview Mode: ON
+
+</button>
+
 </div>
 
+
+<!-- POPUP -->
+
 <div class="modal" id="modal">
-    <div class="card">
-        <button class="close" onclick="closeModal()">×</button>
-        <div id="modalContent"></div>
-    </div>
+
+<div class="card">
+
+<button
+class="close"
+onclick="closeModal()">
+
+×
+</button>
+
+<div id="modalContent"></div>
+
 </div>
+
+</div>
+
 
 <script>
 
-/* ==========================================================
-   QUALITY ADVENT CALENDAR 2026
+/* =========================================================
+   PREVIEW MODE
 
-   PERSONAL MESSAGES:
-   Search this file for the word "DRAFT".
-   Replace ONLY the draft message when you are ready.
-   ========================================================== */
-
-
-/* TESTING MODE
-   true = all doors can be opened
-   false = doors unlock according to the real date
-*/
+   TRUE = all doors open
+   FALSE = doors unlock by date
+========================================================= */
 
 let previewMode = true;
 
 
-/* ==========================================================
-   DAYS 1-18: QUALITY TEAM
+/* =========================================================
+   PEOPLE + MESSAGES
 
-   The order below is intentionally mixed.
-   You can move people later if you want a different order.
-   ========================================================== */
+   Search for DRAFT when you want to replace messages.
+========================================================= */
 
 const days = [
+
+{
+    day: 1,
+    name: "Patrick Levot",
+    message: "DRAFT — Add Patrick's personalised message here."
+},
+
+{
+    day: 2,
+    name: "Vanna Fang",
+    message: "DRAFT — Add Vanna's personalised message here."
+},
+
+{
+    day: 3,
+    name: "Alexander Heinzelmann",
+    message: "DRAFT — Add Alexander's personalised message here."
+},
+
+{
+    day: 4,
+    name: "Danielly Ferreira",
+    message: "DRAFT — Add Danielly's personalised message here."
+},
+
+{
+    day: 5,
+    name: "Andrzej Ilyk",
+    message: "DRAFT — Add Andrzej's personalised message here."
+},
+
+{
+    day: 6,
+    name: "Claire Connor",
+    message: "DRAFT — Add Claire's personalised message here."
+},
+
+{
+    day: 7,
+    name: "Mitzy Borquez",
+    message: "DRAFT — Add Mitzy's personalised message here."
+},
+
+{
+    day: 8,
+    name: "Keith Negapatan",
+    message: "DRAFT — Add Keith's personalised message here."
+},
+
+{
+    day: 9,
+    name: "Ioana Sandu",
+    message: "DRAFT — Add Ioana's personalised message here."
+},
+
+{
+    day: 10,
+    name: "Carsten Aue",
+    message: "DRAFT — Add Carsten's personalised message here."
+},
+
+{
+    day: 11,
+    name: "Geodesa Pongan",
+    message: "DRAFT — Add Geodesa's personalised message here."
+},
+
+{
+    day: 12,
+    name: "Phil Morton",
+    message: "DRAFT — Add Phil's personalised message here."
+},
+
+{
+    day: 13,
+    name: "Josephine Luk",
+    message: "DRAFT — Add Josephine's personalised message here."
+},
+
+{
+    day: 14,
+    name: "Sachin Dighe",
+    message: "DRAFT — Add Sachin's personalised message here."
+},
+
+{
+    day: 15,
+    name: "Ann Van de Sype",
+    message: "DRAFT — Add Ann's personalised message here."
+},
+
+{
+    day: 16,
+    name: "Nadia Scotti",
+    message: "DRAFT — Add Nadia's personalised message here."
+},
+
+{
+    day: 17,
+    name: "Sarah Morris",
+    message: "DRAFT — Add Sarah's personalised message here."
+},
+
+{
+    day: 18,
+    name: "Judith Calvo",
+    message: "DRAFT — Add Judith's personalised message here."
+},
+
+/* =========================
+   TEAM MESSAGES
+========================= */
+
+{
+    day: 19,
+    special: true,
+    title: "What we achieved together ✨",
+    message: "Behind every achievement this year, there were people sharing ideas, solving problems, supporting one another and learning together. Thank you for everything we have achieved as a team. Every contribution, big or small, has helped us move forward."
+},
+
+{
+    day: 20,
+    special: true,
+    title: "Thank you for making a difference 🧡",
+    message: "Quality is not only about processes, standards and systems. It is also about people, collaboration and the choices we make every day. Thank you for your commitment, your support, your ideas and all the small actions that make a real difference."
+},
+
+{
+    day: 21,
+    special: true,
+    title: "Better together 🤝",
+    message: "Different countries, experiences, perspectives and ideas make our Quality community stronger. Thank you for sharing your knowledge, supporting one another and reminding us that we achieve more when we work together."
+},
+
+{
+    day: 22,
+    special: true,
+    title: "What we learned this year 🌱",
+    message: "Every challenge brings an opportunity to learn. Every conversation, lesson learned and shared experience helps us become better. Thank you for being open to learning, sharing and continuously improving together."
+},
+
+{
+    day: 23,
+    special: true,
+    title: "Looking ahead ⭐",
+    message: "Another year is almost behind us, but new opportunities, ideas and challenges are already waiting. Let's continue learning from one another, sharing what works, improving what we can and supporting each other along the way."
+},
+
+{
+    day: 24,
+    special: true,
+    title: "One team. Many people. One journey. 🎄",
+    message: "Over the last 18 days, we have celebrated the people who make our Quality community what it is. Today, the final door belongs to all of us. Thank you for your commitment, support, ideas and everything you have brought to the team this year. Wishing you a wonderful Christmas and a well-deserved break. See you in the new year! 🧡"
+}
+
+];
+
+
+/* =========================================================
+   PAGE ELEMENTS
+========================================================= */
+
+const calendar = document.getElementById("calendar");
+
+const modal = document.getElementById("modal");
+
+const modalContent =
+document.getElementById("modalContent");
+
+const previewButton =
+document.getElementById("previewButton");
+
+
+/* =========================================================
+   CHECK IF DOOR CAN OPEN
+========================================================= */
+
+function isDoorAvailable(day) {
+
+    if (previewMode === true) {
+        return true;
+    }
+
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const currentDay = today.getDate();
+
+    if (year < 2026) {
+        return false;
+    }
+
+    if (year > 2026) {
+        return true;
+    }
+
+    /* January-November */
+
+    if (month < 11) {
+        return false;
+    }
+
+    /* After December */
+
+    if (month > 11) {
+        return true;
+    }
+
+    /* December 2026 */
+
+    return currentDay >= day;
+}
+
+
+/* =========================================================
+   CREATE DOORS
+========================================================= */
+
+function buildCalendar() {
+
+    calendar.innerHTML = "";
+
+    days.forEach(function(item) {
+
+        const available =
+        isDoorAvailable(item.day);
+
+        const door =
+        document.createElement("button");
+
+        door.classList.add("door");
+
+        if (item.special) {
+            door.classList.add("special");
+        }
+
+        if (!available) {
+            door.classList.add("locked");
+        }
+
+        let symbol = "❄️";
+
+        if (item.day % 3 === 0) {
+            symbol = "🎄";
+        }
+        else if (item.day % 2 === 0) {
+            symbol = "⭐";
+        }
+
+        door.innerHTML =
+
+        '<span class="lock">' +
+        (available ? '✨' : '🔒') +
+        '</span>' +
+
+        '<span class="door-number">' +
+        item.day +
+        '</span>' +
+
+        '<span class="door-text">' +
+        (item.special
+        ? 'A little something...'
+        : "Who's inside?") +
+        '</span>' +
+
+        '<span class="decoration">' +
+        symbol +
+        '</span>';
+
+        door.addEventListener(
+            "click",
+            function() {
+                openDoor(item);
+            }
+        );
+
+        calendar.appendChild(door);
+
+    });
+
+}
+
+
+/* =========================================================
+   OPEN A DOOR
+========================================================= */
+
+function openDoor(item) {
+
+    if (!isDoorAvailable(item.day)) {
+
+        modalContent.innerHTML =
+
+        '<div style="font-size:55px;">🔒</div>' +
+
+        '<div class="date">December ' +
+        item.day +
+        '</div>' +
+
+        '<h2>Not yet!</h2>' +
+
+        '<p class="message">' +
+        'This door is still keeping its secret. ' +
+        'Come back on December ' +
+        item.day +
+        ' to discover the next surprise. 🎁' +
+        '</p>' +
+
+        '<div class="next">' +
+        '<strong>Who will be next? 👀</strong>' +
+        'Christmas surprises are worth waiting for.' +
+        '</div>';
+
+        modal.classList.add("show");
+
+        return;
+    }
+
+
+    /* PERSON */
+
+    if (!item.special) {
+
+        let nextMessage = "";
+
+        if (item.day < 18) {
+
+            nextMessage =
+
+            '<strong>Could you be next? 👀</strong>' +
+            "There's only one way to find out..." +
+            '<br>Come back tomorrow! 🎁';
+
+        }
+
+        else {
+
+            nextMessage =
+
+            '<strong>We have celebrated 18 wonderful people... ✨</strong>' +
+            "But our Advent Calendar isn't over yet." +
+            '<br>There is still something waiting behind tomorrow\'s door. 🎁';
+
+        }
+
+
+        modalContent.innerHTML =
+
+        '<div class="date">' +
+        'December ' +
+        item.day +
+        '</div>' +
+
+        '<div class="reveal">' +
+        "Today, we're celebrating..." +
+        '</div>' +
+
+        '<h2 class="person">' +
+        '✨ ' +
+        item.name +
+        ' ✨' +
+        '</h2>' +
+
+        '<p class="message">' +
+        'Today, this door is especially for you.' +
+        '</p>' +
+
+        '<div class="draft">' +
+
+        '<div class="draft-title">' +
+        'PERSONAL MESSAGE — DRAFT' +
+        '</div>' +
+
+        '<br>' +
+
+        item.message +
+
+        '</div>' +
+
+        '<p class="message">' +
+        '🧡 Thank you for being part of our Quality community.' +
+        '</p>' +
+
+        '<div class="next">' +
+        nextMessage +
+        '</div>';
+
+    }
+
+
+    /* GENERAL MESSAGE */
+
+    else {
+
+        let ending = "";
+
+        if (item.day < 24) {
+
+            ending =
+
+            '<div class="next">' +
+
+            '<strong>' +
+            "There's more to come... 🎄" +
+            '</strong>' +
+
+            'Come back tomorrow and open the next door.' +
+
+            '</div>';
+
+        }
+
+        else {
+
+            ending =
+
+            '<div class="next">' +
+
+            '<strong>' +
+            'Merry Christmas! 🎄🧡' +
+            '</strong>' +
+
+            'Thank you for being part of this journey.' +
+
+            '</div>';
+
+        }
+
+
+        modalContent.innerHTML =
+
+        '<div class="date">' +
+        'December ' +
+        item.day +
+        '</div>' +
+
+        '<h2 class="person">' +
+        item.title +
+        '</h2>' +
+
+        '<p class="message">' +
+        item.message +
+        '</p>' +
+
+        ending;
+
+    }
+
+
+    modal.classList.add("show");
+
+}
+
+
+/* =========================================================
+   CLOSE POPUP
+========================================================= */
+
+function closeModal() {
+
+    modal.classList.remove("show");
+
+}
+
+
+modal.addEventListener(
+    "click",
+    function(event) {
+
+        if (event.target === modal) {
+            closeModal();
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+            closeModal();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PREVIEW MODE
+========================================================= */
+
+function togglePreview() {
+
+    previewMode = !previewMode;
+
+    if (previewMode) {
+
+        previewButton.textContent =
+        "🛠 Preview Mode: ON";
+
+    }
+
+    else {
+
+        previewButton.textContent =
+        "🛠 Preview Mode: OFF";
+
+    }
+
+    buildCalendar();
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+buildCalendar();
+
+</script>
+
+</body>
+</html>
