@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quality Advent Calendar</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,.08), transparent 30%),
+        linear-gradient(145deg, #071b25, #0b2b36 55%, #10313a);
+    color: white;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 60px 20px 30px;
+}
+
+header .eyebrow {
+    color: #ff7a00;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: clamp(36px, 6vw, 68px);
+    margin: 10px 0 12px;
+    line-height: 1;
+}
+
+.subtitle {
+    max-width: 680px;
+    margin: auto;
+    color: #d9e2e6;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.small-intro {
+    margin-top: 18px;
+    color: #ffbd80;
+    font-weight: 600;
+}
+
+.calendar {
+    max-width: 1050px;
+    margin: 30px auto 70px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+}
+
+.door {
+    min-height: 145px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.15);
+    background:
+        linear-gradient(145deg, #ffffff, #e9edef);
+    color: #10252d;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(0,0,0,.23);
+    transition: .25s ease;
+}
+
+.door:hover {
+    transform: translateY(-6px) rotate(-1deg);
+    box-shadow: 0 18px 32px rgba(0,0,0,.35);
+}
+
+.door.special {
+    background: linear-gradient(145deg, #ff8a16, #ef6500);
+    color: white;
+}
+
+.door.locked {
+    opacity: .65;
+}
+
+.door-number {
+    font-size: 42px;
+    font-weight: 800;
+}
+
+.door-label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 7px;
+    opacity: .65;
+}
+
+.lock {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-size: 17px;
+}
+
+.decoration {
+    position: absolute;
+    bottom: -8px;
+    right: 8px;
+    font-size: 38px;
+    opacity: .15;
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(3,14,20,.84);
+    backdrop-filter: blur(9px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.card {
+    background: white;
+    color: #132a33;
+    width: min(620px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 28px;
+    padding: 45px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    animation: appear .35s ease;
+}
+
+@keyframes appear {
+    from {
+        transform: scale(.88) translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    cursor: pointer;
+    color: #687a80;
+}
+
+.date {
+    color: #ef6500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.reveal {
+    color: #718087;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.person-name {
+    font-size: 40px;
+    line-height: 1.1;
+    margin: 8px 0 25px;
+    color: #102f3a;
+}
+
+.message {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #44565d;
+    max-width: 500px;
+    margin: auto;
+}
+
+.draft {
+    margin: 25px 0;
+    padding: 22px;
+    background: #fff7ef;
+    border-left: 4px solid #ff7200;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.draft strong {
+    color: #ef6500;
+}
+
+.next {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #dde3e5;
+}
+
+.next strong {
+    display: block;
+    color: #ef6500;
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.lock-message {
+    font-size: 50px;
+    margin: 5px;
+}
+
+footer {
+    text-align: center;
+    color: #aabac0;
+    padding: 0 20px 40px;
+    font-size: 13px;
+}
+
+/* Preview button - remove before launch */
+
+.preview-box {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 50;
+}
+
+.preview-button {
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 20px;
+    background: #ff7200;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+
+@media (max-width: 850px) {
+    .calendar {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    header {
+        padding-top: 40px;
+    }
+
+    .calendar {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .door {
+        min-height: 110px;
+    }
+
+    .door-number {
+        font-size: 32px;
+    }
+
+    .card {
+        padding: 42px 23px 28px;
+    }
+
+    .person-name {
+        font-size: 31px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="eyebrow">December 2026</div>
+
+    <h1>🎄 Quality Advent Calendar</h1>
+
+    <p class="subtitle">
+        Behind every door, there's someone who makes a difference.
+        Open one door each day and discover who we're celebrating.
+    </p>
+
+    <p class="small-intro">
+        18 people. 18 personal messages. 6 messages for all of us. ✨
+    </p>
+</header>
+
+<main class="calendar" id="calendar"></main>
+
+<footer>
+    One day. One door. One little surprise. 🧡
+</footer>
+
+<div class="preview-box">
+    <button class="preview-button" onclick="togglePreview()">
+        🛠 Preview Mode: ON
+    </button>
+</div>
+
+<div class="modal" id="modal">
+    <div class="card">
+        <button class="close" onclick="closeModal()">×</button>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<script>
+
+/* ==========================================================
+   QUALITY ADVENT CALENDAR 2026
+
+   PERSONAL MESSAGES:
+   Search this file for the word "DRAFT".
+   Replace ONLY the draft message when you are ready.
+   ========================================================== */
+
+
+/* TESTING MODE
+   true = all doors can be opened
+   false = doors unlock according to the real date
+*/
+
+let previewMode = true;
+
+
+/* ==========================================================
+   DAYS 1-18: QUALITY TEAM
+
+   The order below is intentionally mixed.
+   You can move people later if you want a different order.
+   ========================================================== */
+
+const days =
