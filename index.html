@@ -1,2702 +1,2318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<title>Quality Advent Calendar 2026</title>
 
-  <meta
-    name="description"
-    content="Quality Advent Calendar 2026"
-  >
+<style>
 
-  <title>Quality Advent Calendar 2026</title>
+:root {
+    --teal: #087c80;
+    --dark: #071d31;
+    --navy: #102b46;
+    --red: #e94135;
+    --red-dark: #b51f29;
+    --green: #07805b;
+    --green-dark: #03513f;
+    --gold: #f8b92d;
+    --cream: #fff1c7;
+    --purple: #6d2856;
+    --white: #ffffff;
+}
 
-  <style>
-    /* =========================================================
-       GENERAL COLOURS
-       ========================================================= */
+* {
+    box-sizing: border-box;
+}
 
-    :root {
-      --background-teal: #087c80;
-      --background-dark: #04515d;
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--navy);
 
-      --navy: #102b46;
-      --navy-dark: #071d31;
+    background:
+        radial-gradient(circle at 8% 10%, rgba(255,255,255,.18) 0 2px, transparent 3px),
+        radial-gradient(circle at 90% 15%, rgba(255,255,255,.15) 0 2px, transparent 3px),
+        linear-gradient(160deg, var(--teal), #04515d);
+}
 
-      --red: #e94135;
-      --red-dark: #b51f29;
-
-      --green: #07805b;
-      --green-dark: #03513f;
-
-      --turquoise: #08a08b;
-      --turquoise-dark: #057369;
-
-      --yellow: #f8b92d;
-      --yellow-light: #ffd865;
-
-      --cream: #fff1c7;
-      --cream-dark: #e9c779;
-
-      --purple: #6d2856;
-      --purple-dark: #481a3a;
-
-      --white: #ffffff;
-      --snow: #fffdf6;
-
-      --shadow: rgba(3, 25, 38, 0.35);
-    }
+button {
+    font: inherit;
+}
 
 
-    /* =========================================================
-       BASIC RESET
-       ========================================================= */
+/* =========================================================
+   PAGE
+========================================================= */
 
-    * {
-      box-sizing: border-box;
-    }
+.page {
+    position: relative;
+    z-index: 2;
+    width: min(1540px, 98%);
+    margin: auto;
+    padding: 22px 0 60px;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+.intro {
+    max-width: 950px;
+    margin: auto;
+    padding: 0 15px;
+    color: white;
+    text-align: center;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      overflow-x: hidden;
+.intro h1 {
+    margin: 0;
 
-      font-family:
-        "Segoe UI",
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1;
 
-      color: var(--navy);
+    text-shadow: 0 4px rgba(0,0,0,.18);
+}
 
-      background:
-        radial-gradient(
-          circle at 10% 12%,
-          rgba(255,255,255,0.16) 0 2px,
-          transparent 3px
-        ),
-        radial-gradient(
-          circle at 88% 18%,
-          rgba(255,255,255,0.18) 0 3px,
-          transparent 4px
-        ),
+.intro p {
+    margin: 15px auto 0;
+    font-size: clamp(.95rem, 2vw, 1.12rem);
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   PREVIEW MODE
+========================================================= */
+
+.preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: max-content;
+
+    margin: 18px auto 28px;
+    padding: 9px 18px;
+
+    background: white;
+
+    border: 3px solid var(--gold);
+    border-radius: 999px;
+
+    box-shadow: 0 8px 18px rgba(0,0,0,.2);
+}
+
+.preview strong {
+    color: var(--green);
+}
+
+.switch {
+    position: relative;
+
+    display: inline-block;
+
+    width: 52px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+
+    cursor: pointer;
+
+    border-radius: 20px;
+
+    background: #99a9ad;
+
+    transition: .25s;
+}
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+
+    left: 4px;
+    top: 4px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    transition: .25s;
+}
+
+.switch input:checked + .slider {
+    background: var(--green);
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+
+/* =========================================================
+   CHRISTMAS FACADE
+========================================================= */
+
+.facade {
+    position: relative;
+
+    max-width: 1430px;
+
+    margin: auto;
+    padding: 0 54px 30px;
+
+    background:
         linear-gradient(
-          160deg,
-          var(--background-teal),
-          var(--background-dark)
-        );
-    }
-
-    button {
-      font: inherit;
-    }
-
-
-    /* =========================================================
-       BACKGROUND DECORATIONS
-       ========================================================= */
-
-    .background-decoration {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .background-tree {
-      position: absolute;
-      bottom: 0;
-
-      font-size: clamp(8rem, 18vw, 18rem);
-      line-height: 1;
-
-      opacity: 0.22;
-
-      filter:
-        saturate(0.8)
-        brightness(0.7);
-    }
-
-    .background-tree.left {
-      left: -45px;
-      transform: rotate(-3deg);
-    }
-
-    .background-tree.right {
-      right: -45px;
-      transform: rotate(3deg);
-    }
-
-    .background-star {
-      position: absolute;
-
-      color: var(--yellow);
-
-      font-size: clamp(1.5rem, 4vw, 3.8rem);
-
-      opacity: 0.9;
-
-      animation:
-        starGlow 2.8s ease-in-out infinite;
-    }
-
-    .background-star.star-one {
-      top: 8%;
-      left: 7%;
-    }
-
-    .background-star.star-two {
-      top: 15%;
-      right: 7%;
-      animation-delay: 0.8s;
-    }
-
-    .background-star.star-three {
-      top: 48%;
-      left: 3%;
-      font-size: 1.5rem;
-      animation-delay: 1.4s;
-    }
-
-    @keyframes starGlow {
-      0%,
-      100% {
-        opacity: 0.55;
-        transform: scale(0.93);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scale(1.08);
-      }
-    }
-
-
-    /* =========================================================
-       SNOW
-       ========================================================= */
-
-    .snow-container {
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .snowflake {
-      position: absolute;
-      top: -30px;
-
-      color: rgba(255,255,255,0.9);
-
-      user-select: none;
-
-      animation:
-        snowFall linear infinite;
-    }
-
-    @keyframes snowFall {
-      0% {
-        opacity: 0;
-        transform:
-          translateY(-30px)
-          translateX(0)
-          rotate(0deg);
-      }
-
-      10% {
-        opacity: 0.9;
-      }
-
-      50% {
-        transform:
-          translateY(52vh)
-          translateX(20px)
-          rotate(180deg);
-      }
-
-      100% {
-        opacity: 0.25;
-
-        transform:
-          translateY(110vh)
-          translateX(-20px)
-          rotate(360deg);
-      }
-    }
-
-
-    /* =========================================================
-       MAIN PAGE
-       ========================================================= */
-
-    .page {
-      position: relative;
-      z-index: 2;
-
-      width: min(1540px, 98%);
-
-      margin: 0 auto;
-      padding: 22px 0 60px;
-    }
-
-    .page-introduction {
-      max-width: 930px;
-
-      margin: 0 auto 18px;
-      padding: 0 16px;
-
-      color: var(--white);
-      text-align: center;
-    }
-
-    .page-introduction h1 {
-      margin: 0;
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: clamp(1.8rem, 5vw, 4rem);
-      line-height: 1.05;
-
-      letter-spacing: 0.035em;
-
-      text-shadow:
-        0 4px 0 rgba(0,0,0,0.15);
-    }
-
-    .page-introduction p {
-      max-width: 770px;
-
-      margin: 12px auto 0;
-
-      font-size: clamp(0.95rem, 2vw, 1.12rem);
-      line-height: 1.6;
-    }
-
-
-    /* =========================================================
-       PREVIEW MODE
-       ========================================================= */
-
-    .preview-control {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 11px;
-
-      width: fit-content;
-
-      margin: 18px auto 30px;
-      padding: 9px 18px;
-
-      color: var(--navy);
-
-      background:
-        rgba(255,255,255,0.94);
-
-      border:
-        3px solid var(--yellow);
-
-      border-radius: 999px;
-
-      box-shadow:
-        0 8px 18px rgba(0,0,0,0.2);
-    }
-
-    .preview-control strong {
-      color: var(--green);
-    }
-
-    .switch {
-      position: relative;
-
-      display: inline-block;
-
-      width: 52px;
-      height: 28px;
-    }
-
-    .switch input {
-      width: 0;
-      height: 0;
-      opacity: 0;
-    }
-
-    .slider {
-      position: absolute;
-      inset: 0;
-
-      cursor: pointer;
-
-      border-radius: 999px;
-
-      background: #99a9ad;
-
-      transition: 0.25s;
-    }
-
-    .slider::before {
-      content: "";
-
-      position: absolute;
-      top: 4px;
-      left: 4px;
-
-      width: 20px;
-      height: 20px;
-
-      border-radius: 50%;
-
-      background: var(--white);
-
-      box-shadow:
-        0 2px 6px rgba(0,0,0,0.3);
-
-      transition: 0.25s;
-    }
-
-    .switch input:checked + .slider {
-      background: var(--green);
-    }
-
-    .switch input:checked + .slider::before {
-      transform: translateX(24px);
-    }
-
-
-    /* =========================================================
-       CHRISTMAS FACADE
-       ========================================================= */
-
-    .facade {
-      position: relative;
-
-      max-width: 1430px;
-
-      margin: 0 auto;
-      padding:
-        0
-        54px
-        30px;
-
-      overflow: visible;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255,255,255,0.055) 25%,
-          transparent 25%
+            135deg,
+            rgba(255,255,255,.05) 25%,
+            transparent 25%
         ) 0 0 / 36px 36px,
-        linear-gradient(
-          225deg,
-          rgba(255,255,255,0.04) 25%,
-          transparent 25%
-        ) 0 0 / 36px 36px,
-        linear-gradient(
-          180deg,
-          #dc332f,
-          #bc2229
-        );
+        linear-gradient(#dc332f, #bc2229);
 
-      border:
-        9px solid var(--navy);
+    border: 9px solid var(--navy);
 
-      border-radius:
+    border-radius:
         95px
         95px
         16px
         16px;
 
-      box-shadow:
-        0 34px 70px rgba(0,0,0,0.38),
-        inset 0 0 0 5px var(--yellow);
-    }
+    box-shadow:
+        0 34px 70px rgba(0,0,0,.38),
+        inset 0 0 0 5px var(--gold);
+}
 
 
-    /* =========================================================
-       CURVED ROOF
-       ========================================================= */
+/* =========================================================
+   ROOF
+========================================================= */
 
-    .roof {
-      position: relative;
+.roof {
+    position: relative;
 
-      height: 245px;
+    height: 245px;
 
-      margin:
+    margin:
         -9px
         -63px
         -65px;
 
-      overflow: hidden;
+    overflow: hidden;
 
-      border:
-        9px solid var(--navy);
+    border: 9px solid var(--navy);
+    border-bottom-width: 11px;
 
-      border-bottom:
-        11px solid var(--navy);
-
-      border-radius:
+    border-radius:
         95px
         95px
-        50% 50% / 95px 95px 75px 75px;
+        50% 50% /
+        95px 95px
+        75px 75px;
 
-      background:
+    background:
         linear-gradient(
-          180deg,
-          #0a6f5a,
-          #06493e
+            #0a6f5a,
+            #06493e
         );
+}
 
-      box-shadow:
-        inset 0 -12px 0 rgba(0,0,0,0.1);
-    }
+.snowcap {
+    position: absolute;
 
-    .roof-snow {
-      position: absolute;
-      top: -8px;
-      left: -2%;
+    top: -8px;
+    left: -2%;
 
-      width: 104%;
-      height: 42px;
+    width: 104%;
+    height: 42px;
 
-      border-radius:
-        50% 50% 40% 40%;
+    border-radius: 50%;
 
-      background: var(--snow);
+    background: #fffdf6;
 
-      box-shadow:
-        0 9px 0 #d9eeee;
-    }
+    box-shadow: 0 9px #d9eeee;
+}
 
-    .roof-pattern {
-      position: absolute;
-      inset: 30px 0 0;
+.star {
+    position: absolute;
 
-      opacity: 0.13;
+    top: 25px;
+    left: 50%;
 
-      background:
-        repeating-linear-gradient(
-          135deg,
-          transparent 0 38px,
-          rgba(255,255,255,0.5) 39px 42px
-        );
-    }
+    transform: translateX(-50%);
 
-    .roof-star {
-      position: absolute;
-      top: 30px;
-      left: 50%;
+    color: var(--gold);
 
-      z-index: 5;
+    font-size: 5rem;
 
-      color: var(--yellow);
+    filter:
+        drop-shadow(0 6px rgba(0,0,0,.2));
+}
 
-      font-size: 4.7rem;
+.garland {
+    position: absolute;
 
-      line-height: 1;
+    top: 105px;
+    left: 10%;
 
-      transform:
-        translateX(-50%)
-        rotate(7deg);
+    width: 80%;
+    height: 45px;
 
-      filter:
-        drop-shadow(0 6px 0 rgba(0,0,0,0.2));
-    }
+    color: var(--gold);
 
-    .roof-garland {
-      position: absolute;
-      top: 85px;
-      left: 50%;
+    font-size: 1.6rem;
+    letter-spacing: 1vw;
 
-      z-index: 4;
+    text-align: center;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    border-bottom: 7px solid var(--navy);
 
-      width: 87%;
-
-      transform:
-        translateX(-50%);
-
-      color: var(--cream);
-
-      font-size: clamp(1rem, 2vw, 1.65rem);
-
-      letter-spacing: 0.25em;
-
-      text-align: center;
-    }
-
-    .garland-line {
-      position: absolute;
-      top: 109px;
-      left: 50%;
-
-      width: 75%;
-      height: 38px;
-
-      border-bottom:
-        7px solid var(--navy);
-
-      border-radius:
+    border-radius:
         0 0 50% 50%;
-
-      transform:
-        translateX(-50%);
-    }
-
-    .garland-lights {
-      position: absolute;
-      top: 117px;
-      left: 50%;
-
-      z-index: 4;
-
-      display: flex;
-      justify-content: space-around;
-
-      width: 67%;
-
-      transform:
-        translateX(-50%);
-    }
-
-    .light {
-      width: 14px;
-      height: 14px;
-
-      border:
-        2px solid rgba(0,0,0,0.15);
-
-      border-radius: 50%;
-
-      box-shadow:
-        0 0 10px currentColor;
-    }
-
-    .light.red {
-      color: var(--red);
-      background: var(--red);
-    }
-
-    .light.yellow {
-      color: var(--yellow);
-      background: var(--yellow);
-    }
-
-    .light.blue {
-      color: #2ec7dd;
-      background: #2ec7dd;
-    }
-
-    .light.white {
-      color: var(--cream);
-      background: var(--cream);
-    }
+}
 
 
-    /* =========================================================
-       TITLE SIGN
-       ========================================================= */
+/* =========================================================
+   SIGN
+========================================================= */
 
-    .title-sign {
-      position: relative;
-      z-index: 8;
+.sign {
+    position: relative;
+    z-index: 3;
 
-      max-width: 1050px;
+    max-width: 1050px;
 
-      margin: 0 auto 22px;
-      padding: 20px 72px;
+    margin: auto auto 22px;
+    padding: 20px 70px;
 
-      color: var(--cream);
-      text-align: center;
+    color: var(--cream);
 
-      background:
+    text-align: center;
+
+    background:
         linear-gradient(
-          180deg,
-          #ee4438,
-          #c7232b
+            #ee4438,
+            #c7232b
         );
 
-      border:
-        5px solid var(--yellow);
+    border: 5px solid var(--gold);
+    border-radius: 17px;
 
-      border-radius: 17px;
+    box-shadow:
+        0 8px var(--navy),
+        0 17px 26px rgba(0,0,0,.27);
+}
 
-      box-shadow:
-        0 8px 0 var(--navy),
-        0 17px 26px rgba(0,0,0,0.27),
-        inset 0 0 0 3px rgba(255,255,255,0.13);
-    }
+.sign h2 {
+    margin: 0;
 
-    .title-sign::before,
-    .title-sign::after {
-      content: "✦";
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.4rem, 3.5vw, 3.1rem);
+    line-height: 1.08;
 
-      position: absolute;
-      top: 50%;
+    text-transform: uppercase;
+}
 
-      color: var(--yellow);
+.sign p {
+    margin: 8px 0 0;
 
-      font-size: 2.3rem;
-
-      transform: translateY(-50%);
-    }
-
-    .title-sign::before {
-      left: 25px;
-    }
-
-    .title-sign::after {
-      right: 25px;
-    }
-
-    .title-sign h2 {
-      margin: 0;
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: clamp(1.45rem, 3.5vw, 3.2rem);
-
-      line-height: 1.08;
-      letter-spacing: 0.035em;
-
-      text-transform: uppercase;
-
-      text-shadow:
-        0 3px 0 rgba(0,0,0,0.18);
-    }
-
-    .title-sign p {
-      margin: 8px 0 0;
-
-      font-size: clamp(0.72rem, 1.5vw, 0.98rem);
-      font-weight: 700;
-
-      letter-spacing: 0.08em;
-    }
+    font-weight: 700;
+    letter-spacing: .08em;
+}
 
 
-    /* =========================================================
-       COLUMNS
-       ========================================================= */
+/* =========================================================
+   CALENDAR
+========================================================= */
 
-    .facade-column {
-      position: absolute;
-      top: 205px;
-      bottom: 24px;
+.frame {
+    position: relative;
+    z-index: 3;
 
-      z-index: 2;
+    padding: 15px;
 
-      width: 47px;
+    background: var(--dark);
 
-      background:
-        linear-gradient(
-          90deg,
-          #b91f28,
-          #f04738,
-          #b91f28
-        );
+    border: 5px solid var(--gold);
+    border-radius: 10px;
 
-      border:
-        5px solid var(--navy);
+    box-shadow:
+        0 12px rgba(0,0,0,.2);
+}
 
-      box-shadow:
-        inset 0 0 0 3px var(--yellow);
-    }
+.calendar {
+    display: grid;
 
-    .facade-column::before {
-      content: "✦";
-
-      position: absolute;
-      top: 15px;
-      left: 50%;
-
-      color: var(--yellow);
-
-      font-size: 1.9rem;
-
-      transform: translateX(-50%);
-    }
-
-    .facade-column::after {
-      content: "🌿";
-
-      position: absolute;
-      top: 46%;
-
-      left: 50%;
-
-      font-size: 1.8rem;
-
-      writing-mode: vertical-rl;
-
-      transform:
-        translate(-50%, -50%);
-    }
-
-    .facade-column.left {
-      left: 9px;
-    }
-
-    .facade-column.right {
-      right: 9px;
-    }
-
-
-    /* =========================================================
-       CALENDAR FRAME
-       ========================================================= */
-
-    .calendar-frame {
-      position: relative;
-      z-index: 7;
-
-      padding: 15px;
-
-      background: var(--navy-dark);
-
-      border:
-        5px solid var(--yellow);
-
-      border-radius: 10px;
-
-      box-shadow:
-        0 12px 0 rgba(0,0,0,0.2),
-        inset 0 0 0 4px rgba(255,255,255,0.05);
-    }
-
-    .calendar {
-      display: grid;
-
-      grid-template-columns:
+    grid-template-columns:
         repeat(6, minmax(0, 1fr));
 
-      gap: 12px;
-    }
+    gap: 12px;
+}
 
 
-    /* =========================================================
-       DOORS
-       ========================================================= */
+/* =========================================================
+   DOORS
+========================================================= */
 
-    .door {
-      position: relative;
+.door {
+    position: relative;
 
-      display: block;
+    width: 100%;
 
-      width: 100%;
-      aspect-ratio: 0.92 / 1;
+    aspect-ratio: .92 / 1;
 
-      padding: 0;
+    padding: 0;
 
-      overflow: visible;
+    border: 0;
 
-      cursor: pointer;
+    background: transparent;
 
-      border: 0;
-      border-radius: 4px;
+    perspective: 1300px;
 
-      background: transparent;
+    cursor: pointer;
 
-      perspective: 1300px;
+    transition:
+        transform .2s,
+        filter .2s;
+}
 
-      transition:
-        transform 0.2s ease,
-        filter 0.2s ease;
-    }
+.door:hover {
+    z-index: 5;
 
-    .door:hover {
-      z-index: 10;
-
-      transform:
+    transform:
         translateY(-5px)
         scale(1.025);
+}
 
-      filter: brightness(1.06);
-    }
+.inside,
+.panel {
+    position: absolute;
+    inset: 0;
 
-    .door:focus-visible {
-      outline:
-        5px solid var(--cream);
+    border: 5px solid var(--navy);
+    border-radius: 3px;
+}
 
-      outline-offset: 4px;
-    }
+.inside {
+    display: grid;
+    place-items: center;
 
-    .door-inside {
-      position: absolute;
-      inset: 0;
+    padding: 8px;
 
-      display: grid;
-      place-items: center;
+    text-align: center;
+    font-weight: 800;
 
-      padding: 12px;
-
-      overflow: hidden;
-
-      color: var(--navy);
-
-      text-align: center;
-
-      background:
+    background:
         radial-gradient(
-          circle at 50% 15%,
-          rgba(255,255,255,1),
-          rgba(255,235,174,0.98)
+            circle at 50% 15%,
+            white,
+            #ffebae
         );
 
-      border:
-        5px solid var(--navy);
+    box-shadow:
+        inset 0 0 0 4px var(--gold);
+}
 
-      border-radius: 3px;
+.panel {
+    display: flex;
 
-      box-shadow:
-        inset 0 0 0 4px var(--yellow);
-    }
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    .inside-decoration {
-      font-size: clamp(1.4rem, 2.5vw, 2.7rem);
-    }
+    color: var(--cream);
 
-    .inside-text {
-      display: block;
+    box-shadow:
+        inset 0 0 0 4px rgba(255,255,255,.14),
+        inset 0 -15px 25px rgba(0,0,0,.12),
+        0 6px rgba(0,0,0,.2);
 
-      margin-top: 7px;
+    transform-origin:
+        left center;
 
-      font-size: clamp(0.67rem, 1.2vw, 0.95rem);
-      font-weight: 900;
-
-      line-height: 1.2;
-    }
-
-    .door-panel {
-      position: absolute;
-      inset: 0;
-
-      z-index: 2;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      padding: 9px;
-
-      color: var(--cream);
-
-      border:
-        5px solid var(--navy);
-
-      border-radius: 3px;
-
-      box-shadow:
-        inset 0 0 0 4px rgba(255,255,255,0.14),
-        inset 0 -15px 25px rgba(0,0,0,0.15),
-        0 6px 0 rgba(0,0,0,0.21);
-
-      transform-origin: left center;
-
-      transform-style: preserve-3d;
-
-      transition:
+    transition:
         transform
-        0.85s
-        cubic-bezier(.68,-0.2,.25,1.18);
+        .85s
+        cubic-bezier(.68,-.2,.25,1.18);
 
-      backface-visibility: hidden;
-    }
+    backface-visibility: hidden;
+}
 
-    .door.opening .door-panel {
-      transform:
+.door.opening .panel {
+    transform:
         rotateY(-112deg);
-    }
+}
 
-    .door-panel::before {
-      content: "";
+.panel::before {
+    content: "";
 
-      position: absolute;
-      inset: 11px;
+    position: absolute;
+    inset: 11px;
 
-      border:
-        3px solid rgba(255,255,255,0.16);
+    border:
+        3px solid
+        rgba(255,255,255,.17);
+}
 
-      border-radius: 2px;
+.num {
+    position: relative;
+    z-index: 2;
 
-      box-shadow:
-        inset 0 0 0 2px rgba(0,0,0,0.12);
-    }
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.55rem, 3.3vw, 3.05rem);
+    font-weight: 900;
+    line-height: 1;
+}
 
-    .door-number {
-      position: relative;
-      z-index: 4;
+.icon {
+    position: relative;
+    z-index: 2;
 
-      margin-bottom: 5px;
+    margin-top: 6px;
 
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+    font-size: clamp(1.55rem, 2.8vw, 2.9rem);
+}
 
-      font-size: clamp(1.55rem, 3.3vw, 3.05rem);
-      font-weight: 900;
-      line-height: 1;
+.knob {
+    position: absolute;
 
-      text-shadow:
-        0 3px 0 rgba(0,0,0,0.2);
-    }
+    top: 50%;
+    right: 8px;
 
-    .door-icon {
-      position: relative;
-      z-index: 4;
+    z-index: 3;
 
-      font-size: clamp(1.55rem, 2.8vw, 2.9rem);
+    width: 15px;
+    height: 15px;
 
-      line-height: 1;
-
-      filter:
-        drop-shadow(0 3px 1px rgba(0,0,0,0.2));
-    }
-
-    .door-knob {
-      position: absolute;
-      top: 50%;
-      right: 8px;
-
-      z-index: 5;
-
-      width: 15px;
-      height: 15px;
-
-      border:
+    border:
         2px solid #a76800;
 
-      border-radius: 50%;
+    border-radius: 50%;
 
-      background:
+    background:
         radial-gradient(
-          circle at 32% 28%,
-          #fff8bc,
-          var(--yellow) 45%,
-          #ad6700 100%
+            circle at 32% 28%,
+            #fff8bc,
+            var(--gold) 45%,
+            #ad6700
         );
+}
 
-      box-shadow:
-        0 2px 4px rgba(0,0,0,0.4);
-    }
+.status {
+    position: absolute;
+
+    top: 8px;
+    right: 8px;
+
+    z-index: 4;
+
+    display: grid;
+    place-items: center;
+
+    width: 27px;
+    height: 27px;
+
+    color: var(--navy);
+
+    font-size: .8rem;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.95);
+}
 
 
-    /* Door colours */
+/* Door colours */
 
-    .door-red {
-      background:
+.red {
+    background:
         linear-gradient(
-          145deg,
-          #ef493c,
-          #bd202a
+            145deg,
+            #ef493c,
+            #bd202a
         );
-    }
+}
 
-    .door-green {
-      background:
+.green {
+    background:
         linear-gradient(
-          145deg,
-          #0b8360,
-          #03513f
+            145deg,
+            #0b8360,
+            #03513f
         );
-    }
+}
 
-    .door-turquoise {
-      background:
+.blue {
+    background:
         linear-gradient(
-          145deg,
-          #0da092,
-          #06686c
+            145deg,
+            #0da092,
+            #06686c
         );
-    }
+}
 
-    .door-yellow {
-      color: var(--navy);
+.yellow {
+    color: var(--navy);
 
-      background:
+    background:
         linear-gradient(
-          145deg,
-          #ffd965,
-          #eda925
+            145deg,
+            #ffd965,
+            #eda925
         );
-    }
+}
 
-    .door-cream {
-      color: var(--navy);
+.cream {
+    color: var(--navy);
 
-      background:
+    background:
         linear-gradient(
-          145deg,
-          #fff2ce,
-          #e8c97e
+            145deg,
+            #fff2ce,
+            #e8c97e
         );
-    }
+}
 
-    .door-purple {
-      background:
+.purple {
+    background:
         linear-gradient(
-          145deg,
-          #813261,
-          #4c1a3b
+            145deg,
+            #813261,
+            #4c1a3b
         );
-    }
+}
 
 
-    /* Locked doors */
+/* Locked */
 
-    .door.locked {
-      cursor: not-allowed;
+.door.locked {
+    cursor: not-allowed;
 
-      filter:
-        grayscale(0.12)
-        brightness(0.68);
-    }
+    filter:
+        grayscale(.15)
+        brightness(.65);
+}
 
-    .door.locked:hover {
-      transform: none;
-    }
+.door.locked:hover {
+    transform: none;
+}
 
-    .door-status {
-      position: absolute;
-      top: 8px;
-      right: 8px;
 
-      z-index: 7;
+/* =========================================================
+   BOTTOM
+========================================================= */
 
-      display: grid;
-      place-items: center;
+.bottom {
+    display: flex;
+    justify-content: center;
 
-      width: 27px;
-      height: 27px;
+    padding: 22px 0 5px;
 
-      border-radius: 50%;
+    color: var(--cream);
 
-      color: var(--navy);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
 
-      font-size: 0.8rem;
+.snowground {
+    position: absolute;
 
-      background:
-        rgba(255,255,255,0.95);
+    left: -18px;
+    right: -18px;
+    bottom: -18px;
 
-      box-shadow:
-        0 3px 7px rgba(0,0,0,0.28);
-    }
+    height: 42px;
 
+    border-radius: 50%;
 
-    /* =========================================================
-       BOTTOM DECORATION
-       ========================================================= */
+    background: #fffdf6;
 
-    .bottom-decoration {
-      position: relative;
-      z-index: 8;
+    box-shadow:
+        0 -7px #dcefed;
+}
 
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
 
-      min-height: 100px;
+/* =========================================================
+   MODAL
+========================================================= */
 
-      padding: 18px 5px 0;
-    }
+.modal {
+    position: fixed;
+    inset: 0;
 
-    .gift-group {
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-    }
+    z-index: 100;
 
-    .gift {
-      position: relative;
+    display: none;
 
-      width: 74px;
-      height: 61px;
+    align-items: center;
+    justify-content: center;
 
-      border:
-        4px solid var(--navy);
+    padding: 20px;
 
-      border-radius: 4px;
+    background:
+        rgba(3,25,38,.85);
 
-      background: var(--red);
+    backdrop-filter: blur(7px);
+}
 
-      box-shadow:
-        0 7px 0 rgba(0,0,0,0.17);
-    }
+.modal.show {
+    display: flex;
+}
 
-    .gift.small {
-      width: 52px;
-      height: 46px;
+.card {
+    position: relative;
 
-      background: var(--yellow);
-    }
+    width: min(760px, 100%);
+    max-height: 90vh;
 
-    .gift.green {
-      background: var(--green);
-    }
+    overflow: auto;
 
-    .gift.cream {
-      background: var(--cream);
-    }
-
-    .gift::before {
-      content: "";
-
-      position: absolute;
-      top: -4px;
-      bottom: -4px;
-      left: 50%;
-
-      width: 11px;
-
-      background: var(--yellow);
-
-      transform: translateX(-50%);
-    }
-
-    .gift::after {
-      content: "🎀";
-
-      position: absolute;
-      top: -36px;
-      left: 50%;
-
-      font-size: 2rem;
-
-      transform: translateX(-50%);
-    }
-
-    .facade-message {
-      flex: 1;
-
-      padding: 11px 20px 5px;
-
-      color: var(--cream);
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: clamp(0.92rem, 2vw, 1.25rem);
-      font-weight: 700;
-
-      text-align: center;
-      letter-spacing: 0.04em;
-    }
-
-    .snow-ground {
-      position: absolute;
-      right: -18px;
-      bottom: -18px;
-      left: -18px;
-
-      z-index: 6;
-
-      height: 42px;
-
-      border-radius: 50% 50% 15px 15px;
-
-      background: var(--snow);
-
-      box-shadow:
-        0 -7px 0 #dcefed;
-    }
-
-
-    /* =========================================================
-       MODAL
-       ========================================================= */
-
-    .modal {
-      position: fixed;
-      inset: 0;
-
-      z-index: 100;
-
-      display: none;
-      align-items: center;
-      justify-content: center;
-
-      padding: 20px;
-
-      background:
-        rgba(3, 25, 38, 0.84);
-
-      backdrop-filter: blur(7px);
-    }
-
-    .modal.show {
-      display: flex;
-
-      animation:
-        modalBackground 0.25s ease;
-    }
-
-    @keyframes modalBackground {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    .modal-card {
-      position: relative;
-
-      width: min(690px, 100%);
-      max-height: 90vh;
-
-      overflow-y: auto;
-
-      padding:
+    padding:
         45px
         38px
         35px;
 
-      color: var(--navy);
-      text-align: center;
+    text-align: center;
 
-      background:
+    background:
         radial-gradient(
-          circle at 50% 0,
-          rgba(255,204,62,0.34),
-          transparent 38%
+            circle at 50% 0,
+            rgba(255,204,62,.34),
+            transparent 38%
         ),
-        var(--snow);
+        #fffdf6;
 
-      border:
-        6px solid var(--yellow);
+    border:
+        6px solid var(--gold);
 
-      border-radius: 25px;
+    border-radius: 25px;
 
-      box-shadow:
-        0 28px 80px rgba(0,0,0,0.48),
+    box-shadow:
+        0 28px 80px rgba(0,0,0,.5),
         inset 0 0 0 5px var(--navy);
+}
 
-      animation:
-        modalEntrance
-        0.42s
-        cubic-bezier(.2,.8,.2,1);
-    }
+.close {
+    position: absolute;
 
-    @keyframes modalEntrance {
-      from {
-        opacity: 0;
+    top: 14px;
+    right: 14px;
 
+    width: 40px;
+    height: 40px;
+
+    border: 0;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    color: white;
+    background: var(--navy);
+
+    font-size: 1.5rem;
+}
+
+.date,
+.quality-badge {
+    display: inline-block;
+
+    padding: 8px 17px;
+
+    border-radius: 999px;
+
+    color: white;
+
+    font-size: .8rem;
+    font-weight: 900;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+}
+
+.date {
+    background: var(--red);
+}
+
+.quality-badge {
+    margin: 8px 0 18px;
+
+    background: var(--green);
+}
+
+.modal-icon {
+    margin: 10px;
+
+    font-size: 3.1rem;
+}
+
+.kicker {
+    color: var(--green-dark);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+.title {
+    margin: 5px 0;
+
+    color: var(--red-dark);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    line-height: 1.07;
+}
+
+.subtitle {
+    margin: 8px 0 18px;
+
+    color: var(--navy);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.message {
+    padding: 24px;
+
+    text-align: left;
+    line-height: 1.7;
+
+    background:
+        rgba(255,255,255,.85);
+
+    border:
+        2px solid
+        rgba(16,43,70,.17);
+
+    border-radius: 16px;
+}
+
+.message p {
+    margin:
+        0
+        0
+        14px;
+}
+
+.message p:last-child {
+    margin-bottom: 0;
+}
+
+.message strong {
+    color: var(--green-dark);
+}
+
+.tomorrow {
+    margin-top: 22px;
+    padding-top: 18px;
+
+    border-top:
+        2px dashed
+        rgba(16,43,70,.25);
+}
+
+.tomorrow h3 {
+    margin:
+        0
+        0
+        7px;
+
+    color: var(--red-dark);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+
+/* =========================================================
+   SNOW
+========================================================= */
+
+.snowflake {
+    position: fixed;
+
+    top: -30px;
+
+    z-index: 50;
+
+    color: white;
+
+    pointer-events: none;
+
+    animation:
+        fall linear infinite;
+}
+
+@keyframes fall {
+    to {
         transform:
-          translateY(30px)
-          scale(0.9);
-      }
+            translateY(110vh)
+            rotate(360deg);
 
-      to {
-        opacity: 1;
-
-        transform:
-          translateY(0)
-          scale(1);
-      }
+        opacity: .2;
     }
-
-    .close-modal {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-
-      display: grid;
-      place-items: center;
-
-      width: 40px;
-      height: 40px;
-
-      cursor: pointer;
-
-      color: var(--white);
-
-      font-size: 1.5rem;
-
-      border: 0;
-      border-radius: 50%;
-
-      background: var(--navy);
-
-      transition:
-        background 0.2s,
-        transform 0.2s;
-    }
-
-    .close-modal:hover {
-      background: var(--red);
-
-      transform: rotate(8deg);
-    }
-
-    .modal-date {
-      display: inline-block;
-
-      margin: 0 0 13px;
-      padding: 8px 17px;
-
-      color: var(--white);
-
-      font-size: 0.8rem;
-      font-weight: 900;
-
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-
-      border-radius: 999px;
-
-      background: var(--red);
-    }
-
-    .modal-icon {
-      margin-bottom: 7px;
-
-      font-size: 3.2rem;
-    }
-
-    .modal-introduction {
-      margin: 0 0 7px;
-
-      color: var(--green-dark);
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: 1.2rem;
-      font-style: italic;
-    }
-
-    .modal-title {
-      margin: 4px 0 18px;
-
-      color: var(--red-dark);
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: clamp(2rem, 7vw, 3.6rem);
-      line-height: 1.07;
-    }
-
-    .message-box {
-      margin: 20px 0;
-      padding: 24px;
-
-      line-height: 1.7;
-
-      border:
-        2px solid rgba(16,43,70,0.17);
-
-      border-radius: 16px;
-
-      background:
-        rgba(255,255,255,0.84);
-    }
-
-    .message-box p {
-      margin: 0;
-
-      font-size: 1.05rem;
-    }
-
-    .draft-message {
-      color: var(--red-dark);
-      font-weight: 800;
-    }
-
-    .thank-you {
-      margin-top: 19px !important;
-
-      color: var(--green-dark);
-
-      font-weight: 800;
-    }
-
-    .tomorrow-message {
-      margin-top: 24px;
-      padding-top: 21px;
-
-      border-top:
-        2px dashed rgba(16,43,70,0.25);
-    }
-
-    .tomorrow-message h3 {
-      margin: 0 0 8px;
-
-      color: var(--red-dark);
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: 1.5rem;
-    }
-
-    .tomorrow-message p {
-      margin: 0;
-
-      line-height: 1.55;
-    }
+}
 
 
-    /* =========================================================
-       FOOTER
-       ========================================================= */
+/* =========================================================
+   FOOTER
+========================================================= */
 
-    .page-footer {
-      margin: 31px auto 0;
+.footer {
+    margin-top: 32px;
 
-      color: rgba(255,255,255,0.9);
+    color:
+        rgba(255,255,255,.87);
 
-      font-size: 0.9rem;
-      text-align: center;
-    }
+    text-align: center;
+}
 
 
-    /* =========================================================
-       RESPONSIVE DESIGN
-       ========================================================= */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
-    @media (max-width: 1080px) {
-      .calendar {
+@media(max-width:1050px) {
+
+    .calendar {
         grid-template-columns:
-          repeat(4, minmax(0, 1fr));
-      }
-
-      .facade-column {
-        display: none;
-      }
-
-      .facade {
-        padding-right: 25px;
-        padding-left: 25px;
-      }
+            repeat(4, minmax(0,1fr));
     }
 
-    @media (max-width: 700px) {
-      .page {
-        width: 100%;
-        padding-top: 15px;
-      }
+    .facade {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
 
-      .preview-control {
-        width: calc(100% - 28px);
+@media(max-width:700px) {
 
-        border-radius: 16px;
-      }
+    .preview {
+        max-width: calc(100% - 20px);
+    }
 
-      .facade {
+    .facade {
         padding:
-          0
-          12px
-          24px;
+            0
+            12px
+            24px;
 
         border-width: 6px;
 
         border-radius:
-          45px
-          45px
-          13px
-          13px;
-      }
+            45px
+            45px
+            13px
+            13px;
+    }
 
-      .roof {
+    .roof {
         height: 190px;
 
         margin:
-          -6px
-          -18px
-          -52px;
+            -6px
+            -18px
+            -52px;
 
         border-width: 6px;
+    }
 
-        border-radius:
-          45px
-          45px
-          50% 50% / 45px 45px 55px 55px;
-      }
-
-      .roof-star {
-        top: 26px;
-
-        font-size: 3.5rem;
-      }
-
-      .roof-garland {
-        top: 75px;
-
-        font-size: 0.8rem;
-      }
-
-      .garland-line {
-        top: 92px;
-      }
-
-      .garland-lights {
-        top: 100px;
-      }
-
-      .title-sign {
+    .sign {
         padding:
-          16px
-          37px;
+            16px
+            37px;
+    }
 
-        border-width: 4px;
-      }
-
-      .title-sign::before {
-        left: 12px;
-
-        font-size: 1.5rem;
-      }
-
-      .title-sign::after {
-        right: 12px;
-
-        font-size: 1.5rem;
-      }
-
-      .calendar-frame {
+    .frame {
         padding: 8px;
+    }
 
-        border-width: 4px;
-      }
-
-      .calendar {
+    .calendar {
         grid-template-columns:
-          repeat(3, minmax(0, 1fr));
+            repeat(3, minmax(0,1fr));
 
         gap: 7px;
-      }
+    }
 
-      .door-panel,
-      .door-inside {
+    .panel,
+    .inside {
         border-width: 3px;
-      }
+    }
 
-      .door-panel::before {
-        inset: 7px;
-
-        border-width: 2px;
-      }
-
-      .door-knob {
-        right: 4px;
-
-        width: 11px;
-        height: 11px;
-      }
-
-      .door-status {
-        top: 4px;
-        right: 4px;
-
-        width: 22px;
-        height: 22px;
-
-        font-size: 0.68rem;
-      }
-
-      .facade-message {
-        display: none;
-      }
-
-      .bottom-decoration {
-        justify-content: center;
-      }
-
-      .gift-group:last-child {
-        display: none;
-      }
-
-      .modal-card {
+    .card {
         padding:
-          44px
-          21px
-          28px;
-      }
+            44px
+            21px
+            28px;
     }
+}
 
-    @media (max-width: 410px) {
-      .calendar {
+@media(max-width:410px) {
+
+    .calendar {
         grid-template-columns:
-          repeat(2, minmax(0, 1fr));
-      }
-
-      .title-sign h2 {
-        font-size: 1.25rem;
-      }
+            repeat(2, minmax(0,1fr));
     }
+}
 
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-
-        transition-duration: 0.01ms !important;
-      }
-    }
-  </style>
+</style>
 </head>
 
 
 <body>
 
-  <!-- Background -->
+<main class="page">
 
-  <div
-    class="background-decoration"
-    aria-hidden="true"
-  >
-    <div class="background-tree left">🌲</div>
-    <div class="background-tree right">🌲</div>
+<header class="intro">
 
-    <div class="background-star star-one">✦</div>
-    <div class="background-star star-two">★</div>
-    <div class="background-star star-three">✦</div>
-  </div>
+    <h1>
+        Quality Advent Calendar
+    </h1>
 
+    <p>
+        Behind every door is someone who makes a difference.
+        Open one each day and discover another part of our
+        brilliant Quality community.
+    </p>
 
-  <!-- Snow -->
-
-  <div
-    class="snow-container"
-    id="snowContainer"
-    aria-hidden="true"
-  ></div>
+</header>
 
 
-  <!-- Main page -->
+<div class="preview">
 
-  <main class="page">
+    🛠️ Preview Mode:
 
-    <header class="page-introduction">
+    <strong id="previewStatus">
+        ON
+    </strong>
 
-      <h1>Quality Advent Calendar</h1>
+    <label class="switch">
 
-      <p>
-        Behind every door, there is someone who makes a difference.
-        Open one door each day and discover who we are celebrating.
-      </p>
-
-    </header>
-
-
-    <!-- Preview Mode -->
-
-    <div class="preview-control">
-
-      <span aria-hidden="true">🛠️</span>
-
-      <span>
-        Preview Mode:
-        <strong id="previewStatus">ON</strong>
-      </span>
-
-      <label
-        class="switch"
-        aria-label="Turn Preview Mode on or off"
-      >
         <input
-          type="checkbox"
-          id="previewToggle"
+            id="previewToggle"
+            type="checkbox"
         >
 
         <span class="slider"></span>
-      </label>
+
+    </label>
+
+</div>
+
+
+<section class="facade">
+
+    <div class="roof">
+
+        <div class="snowcap"></div>
+
+        <div class="star">
+            ★
+        </div>
+
+        <div class="garland">
+            ● ◆ ● ◆ ● ◆ ● ◆ ●
+        </div>
 
     </div>
 
 
-    <!-- Christmas facade -->
-
-    <section
-      class="facade"
-      aria-label="Quality Advent Calendar 2026"
-    >
-
-      <!-- Curved roof -->
-
-      <div
-        class="roof"
-        aria-hidden="true"
-      >
-        <div class="roof-snow"></div>
-        <div class="roof-pattern"></div>
-
-        <div class="roof-star">★</div>
-
-        <div class="roof-garland">
-          🌿 ● 🌿 ● 🌿 ● 🌿 ● 🌿 ● 🌿
-        </div>
-
-        <div class="garland-line"></div>
-
-        <div class="garland-lights">
-          <span class="light red"></span>
-          <span class="light yellow"></span>
-          <span class="light blue"></span>
-          <span class="light white"></span>
-          <span class="light red"></span>
-          <span class="light yellow"></span>
-          <span class="light blue"></span>
-          <span class="light white"></span>
-          <span class="light red"></span>
-        </div>
-      </div>
-
-
-      <!-- Side columns -->
-
-      <div
-        class="facade-column left"
-        aria-hidden="true"
-      ></div>
-
-      <div
-        class="facade-column right"
-        aria-hidden="true"
-      ></div>
-
-
-      <!-- Main sign -->
-
-      <div class="title-sign">
+    <div class="sign">
 
         <h2>
-          Quality Advent Calendar 2026
+            Quality Advent Calendar 2026
         </h2>
 
         <p>
-          ONE DAY · ONE DOOR · ONE LITTLE SURPRISE
+            ONE DAY · ONE DOOR · ONE LITTLE SURPRISE
         </p>
-
-      </div>
-
-
-      <!-- Calendar -->
-
-      <div class="calendar-frame">
-
-        <div
-          class="calendar"
-          id="calendar"
-        ></div>
-
-      </div>
-
-
-      <!-- Gifts -->
-
-      <div
-        class="bottom-decoration"
-        aria-hidden="true"
-      >
-
-        <div class="gift-group">
-          <div class="gift green"></div>
-          <div class="gift small"></div>
-        </div>
-
-        <div class="facade-message">
-          Celebrating the people behind Quality
-        </div>
-
-        <div class="gift-group">
-          <div class="gift small cream"></div>
-          <div class="gift"></div>
-        </div>
-
-      </div>
-
-      <div
-        class="snow-ground"
-        aria-hidden="true"
-      ></div>
-
-    </section>
-
-
-    <footer class="page-footer">
-      Made with appreciation for our Quality community.
-    </footer>
-
-  </main>
-
-
-  <!-- Modal -->
-
-  <div
-    class="modal"
-    id="messageModal"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modalTitle"
-  >
-
-    <div class="modal-card">
-
-      <button
-        class="close-modal"
-        id="closeModal"
-        type="button"
-        aria-label="Close message"
-      >
-        ×
-      </button>
-
-      <div id="modalContent"></div>
 
     </div>
 
-  </div>
+
+    <div class="frame">
+
+        <div
+            class="calendar"
+            id="calendar"
+        ></div>
+
+    </div>
 
 
-  <script>
-    /* =========================================================
-       CALENDAR SETTINGS
-       ========================================================= */
-
-    /*
-      Leave Preview Mode as TRUE while preparing and testing.
-
-      Change it to FALSE before sharing the final calendar.
-    */
-
-    let previewMode = true;
-
-    const calendarYear = 2026;
-
-    /*
-      December is month 11 because JavaScript starts counting
-      months from zero.
-    */
-
-    const calendarMonth = 11;
+    <div class="bottom">
+        Celebrating the people behind Quality 🧡
+    </div>
 
 
-    /* =========================================================
-       PERSONAL DOORS: 1 TO 18
-       ========================================================= */
+    <div class="snowground"></div>
 
-    /*
-      Replace Person 01, Person 02, etc. with the real names.
-
-      Replace each DRAFT text with the final personal message.
-
-      Do not remove the commas between the different people.
-    */
-
-    const personalDoors = [
-      {
-        name: "Person 01",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 02",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 03",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 04",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 05",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 06",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 07",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 08",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 09",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 10",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 11",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 12",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 13",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 14",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 15",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 16",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Person 17",
-        message:
-          "DRAFT – Personal message to be added here."
-      },
-      {
-        name: "Josephine Luk",
-        message:
-          "DRAFT – Personal message to be added here."
-      }
-    ];
+</section>
 
 
-    /* =========================================================
-       GENERAL DOORS: 19 TO 24
-       ========================================================= */
+<footer class="footer">
+    Made with appreciation for our Quality community.
+</footer>
 
-    const generalDoors = [
-      {
-        day: 19,
-        icon: "✨",
-        title: "What We Achieved Together",
-        message:
-          "Behind every achievement this year, there were people supporting, collaborating and learning from each other. Thank you for everything we have achieved together."
-      },
-      {
-        day: 20,
-        icon: "🧡",
-        title: "Thank You for Making a Difference",
-        message:
-          "Quality is not only about processes, standards or systems. It is about people. Thank you for your commitment, your ideas and all the little things you do every day that make a difference."
-      },
-      {
-        day: 21,
-        icon: "🤝",
-        title: "Better Together",
-        message:
-          "Every conversation, shared idea and helping hand makes our Quality community stronger. Thank you for supporting one another and for showing what we can achieve together."
-      },
-      {
-        day: 22,
-        icon: "🌱",
-        title: "What We Learned This Year",
-        message:
-          "Every challenge gives us an opportunity to learn, improve and grow. Thank you for approaching this year with curiosity, openness and a willingness to keep moving forward."
-      },
-      {
-        day: 23,
-        icon: "⭐",
-        title: "Looking Ahead",
-        message:
-          "A new year will bring new opportunities, new challenges and new ideas. Let us continue learning from each other and building a stronger Quality community together."
-      },
-      {
-        day: 24,
-        icon: "🎄",
-        title: "To Our Quality Team",
-        message:
-          "Thank you for everything you have contributed throughout the year. Wishing you a joyful Christmas, a well-deserved break and a new year filled with happiness, connection and new opportunities."
-      }
-    ];
+</main>
 
 
-    /* =========================================================
-       DOOR APPEARANCE
-       ========================================================= */
+<!-- =====================================================
+     POP-UP
+===================================================== -->
 
-    const doorIcons = [
-      "🎄",
-      "🔴",
-      "🌿",
-      "⭐",
-      "🟡",
-      "🧡",
+<div
+    class="modal"
+    id="modal"
+>
 
-      "❄️",
-      "🎁",
-      "🔔",
-      "🌿",
-      "🌺",
-      "🎄",
+    <div class="card">
 
-      "🔴",
-      "❄️",
-      "⭐",
-      "🧦",
-      "🌿",
-      "🔴",
+        <button
+            class="close"
+            id="close"
+            type="button"
+            aria-label="Close"
+        >
+            ×
+        </button>
 
-      "🧡",
-      "🎄",
-      "🌿",
-      "❄️",
-      "🎁",
-      "⭐"
-    ];
+        <div id="content"></div>
 
-    const doorColours = [
-      "door-red",
-      "door-green",
-      "door-cream",
-      "door-red",
-      "door-turquoise",
-      "door-yellow",
+    </div>
 
-      "door-turquoise",
-      "door-yellow",
-      "door-red",
-      "door-green",
-      "door-cream",
-      "door-turquoise",
-
-      "door-yellow",
-      "door-red",
-      "door-green",
-      "door-purple",
-      "door-turquoise",
-      "door-yellow",
-
-      "door-green",
-      "door-cream",
-      "door-red",
-      "door-purple",
-      "door-yellow",
-      "door-green"
-    ];
+</div>
 
 
-    /* =========================================================
-       PAGE ELEMENTS
-       ========================================================= */
+<script>
 
-    const calendar =
-      document.getElementById("calendar");
+/* =========================================================
+   SETTINGS
+========================================================= */
 
-    const messageModal =
-      document.getElementById("messageModal");
+/*
+   DURING TESTING = true
 
-    const modalContent =
-      document.getElementById("modalContent");
+   Before the calendar is finally published,
+   change it to:
 
-    const closeModalButton =
-      document.getElementById("closeModal");
+   let previewMode = false;
+*/
 
-    const previewToggle =
-      document.getElementById("previewToggle");
+let previewMode = true;
 
-    const previewStatus =
-      document.getElementById("previewStatus");
+const calendarYear = 2026;
+const calendarMonth = 11;
 
 
-    previewToggle.checked = previewMode;
+/* =========================================================
+   PEOPLE
+   Doors 1–23
+========================================================= */
 
-    updatePreviewStatus();
+const people = [
+
+{
+    name: "Ann Van de Sype",
+    heading: "For always asking the right questions 💡",
+    quality: "Curiosity",
+    message: `
+        Ann, I love the curiosity you bring to our team.
+        You're always asking the right questions, digging a little
+        deeper and making us stop and think about things differently.
+        More than once, you've asked exactly the question the rest
+        of us hadn't thought of!
+
+        <strong>
+        Thank you for keeping us curious, challenging our thinking
+        and making our conversations better.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Danielly Ferreira",
+    heading: "For sharing your energy and enthusiasm ✨",
+    quality: "Energy",
+    message: `
+        Danielly, I love the enthusiasm you bring to our Quality
+        community. You're always willing to get involved, share
+        what you're doing in Brazil and help others learn from it.
+        Your Quest sharing was a great example of that.
+
+        <strong>
+        Thank you for bringing your energy, ideas and willingness
+        to share with the wider team.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Geodesa Pongan",
+    heading: "For turning ideas into reality 🌟",
+    quality: "Delivery",
+    message: `
+        Desa, thank you for everything you've put into bringing our
+        Global Quality Audit approach to life. From developing the
+        process and training through to the tools and implementation,
+        there has been so much work behind the scenes.
+
+        I also really value having you to bounce ideas around with
+        and work through problems together.
+
+        <strong>
+        Thank you for your partnership, your commitment and for
+        helping turn our ideas into something real.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Mitzy Borquez",
+    heading: "For making global feel local 🌎",
+    quality: "Connection",
+    message: `
+        Mitzy, I really value the way you connect what we're doing
+        globally with your teams locally. You don't just listen to
+        what's happening, you take it away, translate it into
+        something meaningful and make sure the message reaches
+        the people who need it.
+
+        <strong>
+        Thank you for your engagement, your commitment and for
+        helping make our global Quality community genuinely global.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Patrick Levot",
+    heading: "For keeping Quality at the table ⭐",
+    quality: "Leadership",
+    message: `
+        Patrick, I really value the experience and perspective you
+        bring to our team. Your work to keep Quality connected with
+        leadership in France is so important, making it part of
+        business conversations rather than something that happens
+        on the sidelines.
+
+        <strong>
+        Thank you for continuing to champion Quality and for bringing
+        such valuable experience to our wider community.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Alexander Heinzelmann",
+    heading: "For making us stop and think 💭",
+    quality: "Perspective",
+    message: `
+        Alexander, you have a wonderful way of bringing a different
+        perspective to our conversations. Your 1,440 minutes message
+        was such a simple but powerful reminder not to let one
+        difficult moment define everything that follows.
+
+        <strong>
+        Thank you for making us pause, think differently and remember
+        the human side of everything we do.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Vanna Fang",
+    heading: "For bringing positive energy and purpose 🌟",
+    quality: "Positive purpose",
+    message: `
+        Vanna, I really appreciate the positive energy you bring to
+        our team. You got a handle incredibly quickly on what Greater
+        China needed and have such a down-to-earth, practical approach
+        to moving things forward.
+
+        Your passion for Quality really comes through, and I love that
+        you're always focused on taking it in the right direction.
+
+        <strong>
+        Thank you for everything you bring to our Quality community.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Sachin Dighe",
+    heading: "For always stepping up 🤝",
+    quality: "Support",
+    message: `
+        Sachin, one thing I really value about you is your willingness
+        to step in wherever support is needed. Your support to Australia
+        through the DNV audit while we've been without a CQM is a
+        brilliant example, alongside everything you already manage
+        across India, GEC and the Philippines.
+
+        <strong>
+        Thank you for your generosity with your knowledge and for
+        always being prepared to roll up your sleeves and help.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Claire Connor",
+    heading: "For your determination to find a way ☘️",
+    quality: "Perseverance",
+    message: `
+        Claire, I really value your practical approach and your
+        determination to keep things moving. If something isn't
+        working, you're honest about it, you ask the questions and
+        you keep going until we find a way through.
+
+        That's certainly been the case getting Ireland moving with
+        our Global Audit process!
+
+        <strong>
+        Thank you for your perseverance, honesty and wonderfully
+        practical approach to Quality.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Nadia Scott",
+    heading: "For making things happen 🚀",
+    quality: "Momentum",
+    message: `
+        Nadia, what a difference you've made in Italy. You've taken
+        things from a position where progress had really stalled and
+        created genuine momentum.
+
+        I love how proactive you are, how you get stuck in and your
+        determination to make things happen.
+
+        <strong>
+        It's great having you on our team, and thank you for the
+        energy and drive you bring to Quality.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Keith Negapatan",
+    heading: "For contributing across the whole Quality agenda 🌟",
+    quality: "Breadth",
+    message: `
+        Keith, when you look at everything you've been involved in,
+        it's quite a list: audits, management reviews, AIMS migration,
+        dashboards and developing our internal auditors, to name just
+        a few.
+
+        I really value the breadth of knowledge and experience you bring.
+
+        <strong>
+        Thank you for everything you contribute to Quality in the
+        Philippines and for sharing that contribution with our wider
+        Quality community.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Andrzej Ilyk",
+    heading: "For showing what's possible 🏆",
+    quality: "Ownership",
+    message: `
+        Andrzej, I love the ownership and determination you bring to
+        Quality in Poland. Being the first country to achieve 100%
+        disposition of legacy documentation was a fantastic milestone,
+        and your personal involvement in the LXP translations is another
+        great example of you getting stuck in and making things happen.
+
+        <strong>
+        Thank you for setting the pace and showing us what strong
+        local ownership can achieve.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Ioana Sandu",
+    heading: "For putting your heart into Quality 🧡",
+    quality: "Passion",
+    message: `
+        Ioana, your passion for making Quality better really comes
+        through in everything you do.
+
+        I particularly loved seeing the energy and creativity you put
+        into World Quality Day and helping bring it to life for our
+        community. I also really value the openness you bring to our
+        conversations.
+
+        <strong>
+        Thank you for caring so much, for always wanting to make things
+        better and for bringing so much of yourself to our team.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Judith Calvo",
+    heading: "For bringing a little bit of magic ✨",
+    quality: "Creativity",
+    message: `
+        Judith, I absolutely love the creativity you bring to our team.
+
+        You constantly amaze me with your innovative ideas and your
+        ability to see possibilities the rest of us haven't spotted.
+        You remind us that Quality can be creative, engaging and different.
+
+        <strong>
+        Thank you for bringing that little bit of magic to our
+        Quality community.
+        </strong> ✨🧡
+    `
+},
+
+{
+    name: "Phil Morton",
+    heading: "For keeping us grounded in what matters 🎯",
+    quality: "Practical expertise",
+    message: `
+        Phil, I really value the depth of knowledge and practical
+        experience you bring to our Quality community, particularly
+        around Project Quality Management.
+
+        You're always willing to share your perspective, challenge
+        the thinking and bring us back to what actually works in practice.
+
+        <strong>
+        Thank you for your honesty, your expertise and everything
+        you contribute to the team.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Rachel",
+    heading: "For keeping all the plates spinning 🎯",
+    message: `
+        Rachel, there are so many moving parts across our Global Quality
+        programme, and I really appreciate everything you do to keep them
+        visible and moving.
+
+        From the programme itself to Records Management, Lessons Learned
+        and everything that seems to land in between, you bring structure
+        and clarity to an enormous amount of activity.
+
+        <strong>
+        Thank you for keeping us organised, connected and focused on
+        what we are trying to achieve.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Leena",
+    heading: "For being the driving force behind AIMS 🌟",
+    message: `
+        Leena, when we talk about everything we've achieved with AIMS,
+        so much of that comes back to you.
+
+        I really appreciate your determination to keep improving it and
+        your patience in helping all of us navigate documents, BPOs and
+        everything else that comes with building one global system.
+
+        <strong>
+        Thank you for everything you do to keep our Global QMS organised,
+        controlled and accessible.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Reba",
+    heading: "For bringing consistency to our certification world 🌍",
+    message: `
+        Reba, you have taken on the huge challenge of bringing greater
+        consistency to how we manage certification globally, and I really
+        appreciate the knowledge, persistence and attention to detail
+        you bring to it.
+
+        You've also helped make audits feel more accessible through the
+        new Preparing for a Successful Audit training.
+
+        <strong>
+        Thank you for bringing structure to a complicated world and for
+        always being ready to share your knowledge with the team.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Jo",
+    heading: "For making things happen behind the scenes ⭐",
+    message: `
+        Jo, so much happens behind the scenes to keep our Quality
+        community connected, and I really appreciate everything you
+        do to make that possible.
+
+        From keeping us organised and prepared to supporting our Quality
+        communications and World Quality Day, you are one of those people
+        who quietly helps everything come together.
+
+        <strong>
+        Thank you for all the things you do that people may not always
+        see, but that make such a difference to our team.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Jenny",
+    heading: "For making the right information easier to find 📚",
+    message: `
+        Jenny, I really value the expertise and passion you bring to
+        the Corporate Library.
+
+        It might not always be the most visible part of Quality, but
+        giving our people access to the right standards, technical
+        references and trusted information has a direct impact on the
+        quality of what we deliver.
+
+        <strong>
+        Thank you for championing reliable information and for making
+        an important part of Quality work better for everyone.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Carsten",
+    heading: "For stepping up and supporting the team 🤝",
+    message: `
+        Carsten, thank you for stepping into Global Quality at a time
+        of considerable change and for continuing to support the team
+        and our priorities.
+
+        I particularly appreciate your willingness to listen, talk
+        things through and help us navigate some difficult decisions
+        and uncertainty.
+
+        <strong>
+        Thank you for being there for the team and helping us keep
+        moving forward.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Diane",
+    heading: "For helping create the vision 🌟",
+    message: `
+        Diane, so much of what we're continuing to build in Global
+        Quality started with a vision you helped create.
+
+        From Quality Culture and building our global organisation to
+        Lessons Learned and challenging us to think much bigger about
+        what Quality could be at Arcadis, your influence is woven
+        through so much of our work.
+
+        <strong>
+        Thank you for believing in the vision, challenging us to be
+        ambitious and for everything you brought to our Quality community.
+        </strong> 🧡
+    `
+},
+
+{
+    name: "Sarah",
+    heading: "A little reminder to myself 🧡",
+    message: `
+        And one for me... because sometimes we should stop and recognise
+        ourselves too.
+
+        This year has brought plenty of challenges, change and a few
+        curveballs, but I'm proud that I've kept pushing our Global QMS
+        forward, supported our countries and our CQM community, and kept
+        challenging us to make Quality simpler, stronger and more relevant
+        to the business.
+
+        <strong>
+        I'm incredibly proud of what we've built together, and very
+        grateful for all the people who made it possible.
+        </strong> 🧡
+    `
+}
+
+];
 
 
-    /* =========================================================
-       DOOR AVAILABILITY
-       ========================================================= */
+/* =========================================================
+   DOOR 24
+========================================================= */
 
-    function isDoorUnlocked(day) {
-      if (previewMode) {
+const finalMessage = {
+
+    name: "For all of us",
+
+    heading: "Merry Christmas 🎄",
+
+    message: `
+
+        <p>
+            <strong>
+                Behind every door has been someone who makes a difference.
+            </strong>
+        </p>
+
+        <p>
+            Different countries, different roles and different talents,
+            but one brilliant Quality community.
+        </p>
+
+        <p>
+            Thank you for the questions you ask, the ideas you bring,
+            the problems you solve, the support you give each other and,
+            most importantly, for caring about making things better.
+        </p>
+
+        <p>
+            I hope you get the chance over the festive break to switch
+            off, recharge and spend time doing whatever makes you happy.
+        </p>
+
+        <p>
+            <strong>
+                Merry Christmas to you and your families, and thank you
+                for everything you bring to our Quality community. 🎄✨🧡
+            </strong>
+        </p>
+    `
+};
+
+
+/* =========================================================
+   DOOR DECORATIONS
+========================================================= */
+
+const icons = [
+    "🎄", "🔴", "🌿", "⭐", "🟡", "🧡",
+    "❄️", "🎁", "🔔", "🌿", "🌺", "🎄",
+    "🔴", "❄️", "⭐", "🧦", "🌿", "🔴",
+    "🧡", "🎄", "🌿", "❄️", "🎁", "⭐"
+];
+
+const colors = [
+    "red", "green", "cream", "red",
+    "blue", "yellow",
+
+    "blue", "yellow", "red", "green",
+    "cream", "blue",
+
+    "yellow", "red", "green", "purple",
+    "blue", "yellow",
+
+    "green", "cream", "red", "purple",
+    "yellow", "green"
+];
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const calendar =
+    document.getElementById("calendar");
+
+const modal =
+    document.getElementById("modal");
+
+const content =
+    document.getElementById("content");
+
+const toggle =
+    document.getElementById("previewToggle");
+
+const status =
+    document.getElementById("previewStatus");
+
+const closeButton =
+    document.getElementById("close");
+
+
+toggle.checked = previewMode;
+
+
+/* =========================================================
+   DOOR AVAILABILITY
+========================================================= */
+
+function isUnlocked(day) {
+
+    if (previewMode) {
         return true;
-      }
-
-      const today = new Date();
-
-      const unlockDate =
-        new Date(
-          calendarYear,
-          calendarMonth,
-          day,
-          0,
-          0,
-          0
-        );
-
-      return today >= unlockDate;
     }
 
+    const today =
+        new Date();
 
-    /* =========================================================
-       CREATE THE 24 DOORS
-       ========================================================= */
+    const unlockDate =
+        new Date(
+            calendarYear,
+            calendarMonth,
+            day,
+            0,
+            0,
+            0
+        );
 
-    function createCalendar() {
-      calendar.innerHTML = "";
+    return today >= unlockDate;
+}
 
-      for (let day = 1; day <= 24; day++) {
+
+/* =========================================================
+   CREATE CALENDAR
+========================================================= */
+
+function createCalendar() {
+
+    calendar.innerHTML = "";
+
+    for (
+        let day = 1;
+        day <= 24;
+        day++
+    ) {
+
         const unlocked =
-          isDoorUnlocked(day);
+            isUnlocked(day);
 
         const door =
-          document.createElement("button");
+            document.createElement("button");
 
         door.type = "button";
 
         door.className =
-          `door ${unlocked ? "" : "locked"}`;
-
-        door.dataset.day = day;
+            unlocked
+                ? "door"
+                : "door locked";
 
         if (unlocked) {
-          door.setAttribute(
-            "aria-label",
-            `Open door ${day}`
-          );
+
+            door.setAttribute(
+                "aria-label",
+                `Open door ${day}`
+            );
+
         } else {
-          door.setAttribute(
-            "aria-label",
-            `Door ${day} is locked until December ${day}`
-          );
+
+            door.setAttribute(
+                "aria-label",
+                `Door ${day} is locked until December ${day}`
+            );
         }
+
 
         const insideText =
-          day <= 18
-            ? "A special person"
-            : "A message for everyone";
+            day < 24
+                ? "A special person"
+                : "A message for everyone";
 
-        const statusIcon =
-          unlocked
-            ? "✦"
-            : "🔒";
+
+        const stateIcon =
+            unlocked
+                ? "✦"
+                : "🔒";
+
 
         door.innerHTML = `
-          <div class="door-inside">
 
-            <div>
-              <span
-                class="inside-decoration"
-                aria-hidden="true"
-              >
-                🎁
-              </span>
+            <div class="inside">
 
-              <span class="inside-text">
-                ${insideText}
-              </span>
+                <div>
+
+                    🎁
+
+                    <br>
+
+                    ${insideText}
+
+                </div>
+
             </div>
 
-          </div>
 
-          <div
-            class="door-panel
-              ${doorColours[day - 1]}"
-          >
-
-            <span class="door-number">
-              ${day}
-            </span>
-
-            <span
-              class="door-icon"
-              aria-hidden="true"
+            <div
+                class="
+                    panel
+                    ${colors[day - 1]}
+                "
             >
-              ${doorIcons[day - 1]}
-            </span>
 
-            <span
-              class="door-knob"
-              aria-hidden="true"
-            ></span>
+                <span class="num">
+                    ${day}
+                </span>
 
-            <span
-              class="door-status"
-              aria-hidden="true"
-            >
-              ${statusIcon}
-            </span>
+                <span class="icon">
+                    ${icons[day - 1]}
+                </span>
 
-          </div>
+                <span class="knob"></span>
+
+                <span class="status">
+                    ${stateIcon}
+                </span>
+
+            </div>
         `;
+
 
         door.addEventListener(
-          "click",
-          function () {
-            handleDoorClick(door, day);
-          }
+            "click",
+            function () {
+
+                openDoor(
+                    door,
+                    day
+                );
+            }
         );
 
-        calendar.appendChild(door);
-      }
+
+        calendar.appendChild(
+            door
+        );
     }
+}
 
 
-    /* =========================================================
-       OPEN A DOOR
-       ========================================================= */
+/* =========================================================
+   OPEN DOOR
+========================================================= */
 
-    function handleDoorClick(door, day) {
-      if (!isDoorUnlocked(day)) {
-        showLockedMessage(day);
+function openDoor(
+    door,
+    day
+) {
+
+    if (!isUnlocked(day)) {
+
+        showLocked(day);
+
         return;
-      }
+    }
 
-      door.classList.add("opening");
 
-      window.setTimeout(
+    door.classList.add(
+        "opening"
+    );
+
+
+    setTimeout(
+
         function () {
-          showDoorMessage(day);
 
-          door.classList.remove("opening");
+            showMessage(day);
+
+            door.classList.remove(
+                "opening"
+            );
+
         },
-        650
-      );
+
+        620
+    );
+}
+
+
+/* =========================================================
+   SHOW MESSAGE
+========================================================= */
+
+function showMessage(day) {
+
+    if (day === 24) {
+
+        showFinalMessage();
+
+    } else {
+
+        showPerson(day);
     }
 
 
-    /* =========================================================
-       SELECT THE CORRECT MESSAGE
-       ========================================================= */
+    openModal();
+}
 
-    function showDoorMessage(day) {
-      if (day <= 18) {
-        showPersonalMessage(day);
-      } else {
-        showGeneralMessage(day);
-      }
 
-      openModal();
+/* =========================================================
+   DOORS 1–23
+========================================================= */
+
+function showPerson(day) {
+
+    const person =
+        people[day - 1];
+
+
+    /*
+       Only the first 15 people are CQMs,
+       so only they receive the Quality badge.
+    */
+
+    let qualityBadge = "";
+
+    if (
+        day <= 15 &&
+        person.quality
+    ) {
+
+        qualityBadge = `
+
+            <div class="quality-badge">
+                THEIR QUALITY · ${person.quality}
+            </div>
+        `;
     }
 
 
-    /* =========================================================
-       PERSONAL MESSAGES: DOORS 1 TO 18
-       ========================================================= */
+    /*
+       Teaser changes depending on
+       where we are in the calendar.
+    */
 
-    function showPersonalMessage(day) {
-      const person =
-        personalDoors[day - 1];
+    let teaser = "";
 
-      let finalSection = "";
 
-      if (day < 18) {
-        finalSection = `
-          <div class="tomorrow-message">
+    if (day < 15) {
 
-            <h3>🎄 Could you be next?</h3>
+        teaser = `
+
+            <div class="tomorrow">
+
+                <h3>
+                    🎄 Could you be next?
+                </h3>
+
+                <p>
+                    There is only one way to find out...
+                    <strong>
+                        come back tomorrow!
+                    </strong>
+                    👀
+                </p>
+
+            </div>
+        `;
+
+    } else if (day === 15) {
+
+        teaser = `
+
+            <div class="tomorrow">
+
+                <h3>
+                    ✨ Our Quality story continues...
+                </h3>
+
+                <p>
+                    There are still more people behind our
+                    Quality story. Keep opening the doors.
+                </p>
+
+            </div>
+        `;
+
+    } else if (day < 23) {
+
+        teaser = `
+
+            <div class="tomorrow">
+
+                <h3>
+                    🎄 Who will be behind tomorrow's door?
+                </h3>
+
+                <p>
+                    There is only one way to find out...
+                    <strong>
+                        come back tomorrow!
+                    </strong>
+                    👀
+                </p>
+
+            </div>
+        `;
+
+    } else {
+
+        teaser = `
+
+            <div class="tomorrow">
+
+                <h3>
+                    🎄 One final door remains...
+                </h3>
+
+                <p>
+                    Come back tomorrow for a message
+                    for all of us.
+                </p>
+
+            </div>
+        `;
+    }
+
+
+    content.innerHTML = `
+
+        <div class="date">
+            December ${day}
+        </div>
+
+
+        <div class="modal-icon">
+            🎁
+        </div>
+
+
+        <div class="kicker">
+            Today, we are celebrating...
+        </div>
+
+
+        <h2 class="title">
+            ${person.name}
+        </h2>
+
+
+        <div class="subtitle">
+            ${person.heading}
+        </div>
+
+
+        ${qualityBadge}
+
+
+        <div class="message">
 
             <p>
-              There is only one way to find out...
-              <strong>come back tomorrow!</strong> 👀
+                ${person.message}
             </p>
 
-          </div>
-        `;
-      } else {
-        finalSection = `
-          <div class="tomorrow-message">
+        </div>
+
+
+        ${teaser}
+    `;
+}
+
+
+/* =========================================================
+   DOOR 24
+========================================================= */
+
+function showFinalMessage() {
+
+    content.innerHTML = `
+
+        <div class="date">
+            December 24
+        </div>
+
+
+        <div class="modal-icon">
+            🎄
+        </div>
+
+
+        <div class="kicker">
+            A message for all of us
+        </div>
+
+
+        <h2 class="title">
+            ${finalMessage.name}
+        </h2>
+
+
+        <div class="subtitle">
+            ${finalMessage.heading}
+        </div>
+
+
+        <div class="message">
+            ${finalMessage.message}
+        </div>
+
+
+        <div class="tomorrow">
 
             <h3>
-              ✨ We have celebrated 18 amazing people...
+                ✨ Merry Christmas!
             </h3>
 
             <p>
-              But our Advent Calendar is not over yet.
-              There is still something special behind
-              the next door.
+                Thank you for opening every door and
+                for being part of our Quality community.
             </p>
 
-          </div>
-        `;
-      }
+        </div>
+    `;
+}
 
-      modalContent.innerHTML = `
-        <p class="modal-date">
-          December ${day}
-        </p>
 
-        <div
-          class="modal-icon"
-          aria-hidden="true"
-        >
-          🎁
+/* =========================================================
+   LOCKED DOORS
+========================================================= */
+
+function showLocked(day) {
+
+    content.innerHTML = `
+
+        <div class="date">
+            Door ${day}
         </div>
 
-        <p class="modal-introduction">
-          Today, we are celebrating...
-        </p>
 
-        <h2
-          class="modal-title"
-          id="modalTitle"
-        >
-          ${escapeHTML(person.name)}
+        <div class="modal-icon">
+            🔒
+        </div>
+
+
+        <h2 class="title">
+            Not yet!
         </h2>
 
-        <div class="message-box">
 
-          <p>
-            <em>
-              Today, this door is especially for you.
-            </em>
-          </p>
+        <div class="message">
 
-          <br>
+            <p>
+                This door is still waiting for
+                its special day.
+            </p>
 
-          <p class="draft-message">
-            ${escapeHTML(person.message)}
-          </p>
-
-          <p class="thank-you">
-            🧡 Thank you for being part of our
-            Quality community.
-          </p>
+            <p>
+                <strong>
+                    Come back on December ${day}
+                    to discover the next surprise.
+                </strong>
+            </p>
 
         </div>
 
-        ${finalSection}
-      `;
-    }
 
-
-    /* =========================================================
-       GENERAL MESSAGES: DOORS 19 TO 24
-       ========================================================= */
-
-    function showGeneralMessage(day) {
-      const doorInformation =
-        generalDoors.find(
-          function (item) {
-            return item.day === day;
-          }
-        );
-
-      let finalSection = "";
-
-      if (day < 24) {
-        finalSection = `
-          <div class="tomorrow-message">
+        <div class="tomorrow">
 
             <h3>
-              🎁 There is more to discover...
+                🎄 No peeking!
             </h3>
 
             <p>
-              Come back tomorrow and open
-              the next door.
+                The mystery is part of the fun.
             </p>
 
-          </div>
-        `;
-      } else {
-        finalSection = `
-          <div class="tomorrow-message">
-
-            <h3>✨ Merry Christmas!</h3>
-
-            <p>
-              Thank you for opening every door
-              and for being part of our
-              Quality community.
-            </p>
-
-          </div>
-        `;
-      }
-
-      modalContent.innerHTML = `
-        <p class="modal-date">
-          December ${day}
-        </p>
-
-        <div
-          class="modal-icon"
-          aria-hidden="true"
-        >
-          ${doorInformation.icon}
         </div>
-
-        <p class="modal-introduction">
-          A message for all of us
-        </p>
-
-        <h2
-          class="modal-title"
-          id="modalTitle"
-        >
-          ${doorInformation.title}
-        </h2>
-
-        <div class="message-box">
-
-          <p>
-            ${doorInformation.message}
-          </p>
-
-        </div>
-
-        ${finalSection}
-      `;
-    }
+    `;
 
 
-    /* =========================================================
-       LOCKED MESSAGE
-       ========================================================= */
-
-    function showLockedMessage(day) {
-      modalContent.innerHTML = `
-        <p class="modal-date">
-          Door ${day}
-        </p>
-
-        <div
-          class="modal-icon"
-          aria-hidden="true"
-        >
-          🔒
-        </div>
-
-        <h2
-          class="modal-title"
-          id="modalTitle"
-        >
-          Not yet!
-        </h2>
-
-        <div class="message-box">
-
-          <p>
-            This door is still waiting
-            for its special day.
-          </p>
-
-          <p class="thank-you">
-            Come back on December ${day}
-            to discover the next surprise.
-          </p>
-
-        </div>
-
-        <div class="tomorrow-message">
-
-          <h3>🎄 No peeking!</h3>
-
-          <p>
-            The mystery is part of the fun.
-          </p>
-
-        </div>
-      `;
-
-      openModal();
-    }
+    openModal();
+}
 
 
-    /* =========================================================
-       OPEN AND CLOSE MODAL
-       ========================================================= */
+/* =========================================================
+   MODAL
+========================================================= */
 
-    function openModal() {
-      messageModal.classList.add("show");
+function openModal() {
 
-      document.body.style.overflow =
+    modal.classList.add(
+        "show"
+    );
+
+    document.body.style.overflow =
         "hidden";
+}
 
-      closeModalButton.focus();
-    }
 
-    function closeModal() {
-      messageModal.classList.remove("show");
+function closeModal() {
 
-      document.body.style.overflow =
+    modal.classList.remove(
+        "show"
+    );
+
+    document.body.style.overflow =
         "";
-    }
+}
 
-    closeModalButton.addEventListener(
-      "click",
-      closeModal
-    );
 
-    messageModal.addEventListener(
-      "click",
-      function (event) {
-        if (event.target === messageModal) {
-          closeModal();
-        }
-      }
-    );
+closeButton.addEventListener(
+    "click",
+    closeModal
+);
 
-    document.addEventListener(
-      "keydown",
-      function (event) {
+
+modal.addEventListener(
+
+    "click",
+
+    function (event) {
+
         if (
-          event.key === "Escape" &&
-          messageModal.classList.contains("show")
+            event.target === modal
         ) {
-          closeModal();
+
+            closeModal();
         }
-      }
-    );
-
-
-    /* =========================================================
-       PREVIEW MODE CONTROL
-       ========================================================= */
-
-    previewToggle.addEventListener(
-      "change",
-      function () {
-        previewMode =
-          previewToggle.checked;
-
-        updatePreviewStatus();
-        createCalendar();
-      }
-    );
-
-    function updatePreviewStatus() {
-      previewStatus.textContent =
-        previewMode ? "ON" : "OFF";
-
-      previewStatus.style.color =
-        previewMode
-          ? "#07805b"
-          : "#b51f29";
     }
+);
 
 
-    /* =========================================================
-       SNOW ANIMATION
-       ========================================================= */
+document.addEventListener(
 
-    function createSnow() {
-      const snowContainer =
-        document.getElementById(
-          "snowContainer"
-        );
+    "keydown",
 
-      const snowSymbols = [
+    function (event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeModal();
+        }
+    }
+);
+
+
+/* =========================================================
+   PREVIEW MODE
+========================================================= */
+
+toggle.addEventListener(
+
+    "change",
+
+    function () {
+
+        previewMode =
+            toggle.checked;
+
+
+        status.textContent =
+            previewMode
+                ? "ON"
+                : "OFF";
+
+
+        status.style.color =
+            previewMode
+                ? "#07805b"
+                : "#b51f29";
+
+
+        createCalendar();
+    }
+);
+
+
+/* =========================================================
+   SNOW
+========================================================= */
+
+function createSnow() {
+
+    const symbols = [
         "❄",
         "•",
         "✦"
-      ];
+    ];
 
-      for (
-        let snowNumber = 0;
-        snowNumber < 50;
-        snowNumber++
-      ) {
-        const snowflake =
-          document.createElement("span");
 
-        snowflake.className =
-          "snowflake";
+    for (
+        let i = 0;
+        i < 42;
+        i++
+    ) {
 
-        snowflake.textContent =
-          snowSymbols[
-            Math.floor(
-              Math.random() *
-              snowSymbols.length
-            )
-          ];
+        const flake =
+            document.createElement(
+                "span"
+            );
 
-        snowflake.style.left =
-          `${Math.random() * 100}%`;
 
-        snowflake.style.fontSize =
-          `${8 + Math.random() * 18}px`;
+        flake.className =
+            "snowflake";
 
-        snowflake.style.animationDuration =
-          `${8 + Math.random() * 13}s`;
 
-        snowflake.style.animationDelay =
-          `${Math.random() * -20}s`;
+        flake.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
 
-        snowContainer.appendChild(
-          snowflake
+
+        flake.style.left =
+            Math.random() *
+            100 +
+            "%";
+
+
+        flake.style.fontSize =
+            8 +
+            Math.random() *
+            18 +
+            "px";
+
+
+        flake.style.animationDuration =
+            8 +
+            Math.random() *
+            13 +
+            "s";
+
+
+        flake.style.animationDelay =
+            Math.random() *
+            -20 +
+            "s";
+
+
+        document.body.appendChild(
+            flake
         );
-      }
     }
+}
 
 
-    /* =========================================================
-       SECURITY FOR NAMES AND MESSAGES
-       ========================================================= */
+/* =========================================================
+   START
+========================================================= */
 
-    function escapeHTML(value) {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
+createSnow();
 
+createCalendar();
 
-    /* =========================================================
-       START CALENDAR
-       ========================================================= */
-
-    createSnow();
-    createCalendar();
-  </script>
+</script>
 
 </body>
 </html>
